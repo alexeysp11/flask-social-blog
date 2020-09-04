@@ -1,12 +1,9 @@
 {% extends "layout.html" %}
 
-{% block title %}Home Page{% endblock title %}
+{% block title %}Flask Social Blog{% endblock title %}
 
 {% block content %}
-	<h1>Welcome!</h1>
-	{% for post in posts %}
-		<h2>{{ post.title }}</h2>
-		<p>By {{ post.author }} on {{ post.date_posted }}</p>
-		<p>{{ post.content }}</p>
-	{% endfor %}
+	<h1>Welcome to the Flask Social Blog!</h1>
+	<a href="{{ url_for('login') }}">Sign In</a><br>
+	<a href="{{ url_for('register') }}">Register</a>
 {% endblock content %}

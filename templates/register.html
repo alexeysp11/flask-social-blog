@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}Register{% endblock title %}
+
+{% block content %}
+    <h1>Register</h1>
+    <p>Create an accout. It's free and only takes a minute.</p>
+    <input type="text" placeholder="First Name"><br>
+    <input type="text" placeholder="Last Name"><br>
+    <input type="text" placeholder="Login"><br>
+    <input type="text" placeholder="Email"><br>
+    <!--Password should not be visible-->
+    <input type="text" placeholder="Password"><br>
+    <input type="text" placeholder="Confirm password"><br>
+    <button>Register Now</button>
+    <p>Already have an account?</p>
+    <a href= "{{ url_for('login') }}">Sign In</a>
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}Sign In{% endblock title %}
+
+{% block content %}
+    <h1>Sign In</h1>
+    <input type="text" placeholder="Sign In"><br>
+    <input type="text" placeholder="Login"><br>
+    <!--Password should not be visible-->
+    <input type="text" placeholder="Password"><br>
+    <button>Log In</button><br>
+    <a href="{{ url_for('forgot_password') }}">Forgot password?</a><br>
+    <a href="{{ url_for('register') }}">Register</a>
+{% endblock content %}

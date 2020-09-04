@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}Create a new post{% endblock title %}
+
+{% block content %}
+	<h1>Create a new post</h1>
+    <label for="author">Author</label>
+    <input type="text" id="author" name="author"><br>
+    <label for="address">Address of post</label>
+    <input type="text" id="address" name="address"><br>
+    <label for="name_post">Name of the post </label>
+    <input type="text" id="name_post" name="name_post"><br>
+    <input type="text" id="text_post" name="text_post"><br>
+	<button>Publish</button>
+{% endblock content %}
