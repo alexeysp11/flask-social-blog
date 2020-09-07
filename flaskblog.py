@@ -1,6 +1,8 @@
 from flask import Flask, render_template
-
+from forms import RegistrationForm, LoginForm
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = '3d00b8c399db2c728fcb31aff3273960'
 
 posts = [
     {
@@ -34,7 +36,17 @@ def about():
 
 @app.route("/login")
 def login():
-    return render_template('login.html')
+    form = LoginForm()
+    return render_template('login.html', form=form)
+
+@app.route("/register")
+def register():
+    form = RegistrationForm()
+    return render_template('register.html', form=form)
+
+@app.route("/forgot_password")
+def forgot_password():
+    return render_template('forgot_password.html')
 
 @app.route("/profile")
 def profile():
@@ -43,14 +55,6 @@ def profile():
 @app.route("/feed")
 def feed():
     return render_template('feed.html', posts=posts)
-
-@app.route("/register")
-def register():
-    return render_template('register.html')
-
-@app.route("/forgot_password")
-def forgot_password():
-    return render_template('forgot_password.html')
 
 @app.route("/new")
 def new():
