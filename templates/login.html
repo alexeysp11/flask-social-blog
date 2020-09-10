@@ -3,32 +3,32 @@
 {% block title %}Sign In{% endblock title %}
 
 {% block content %}
-<div>
-    <h1>Sign In page</h1>
-    <form>
-        {{ form.hidden_tag() }}
-        <fieldset>
-            <legend>
-                Enter your username and password.
-            </legend>
-            <div class="form-group">
-                {{ form.username.label(class="form-control-label") }}
-                {{ form.username(class="form-control form-control=lg") }}
-            </div>
-            <div class="form-group">
-                {{ form.password.label(class="form-control-label") }}
-                {{ form.password(class="form-control form-control=lg") }}
-            </div>
-        </fieldset>
-        <div>
-            {{ form.submit(class="btn btn-outline-info") }}
-        </div>
-    </form>
-</div>
-<div class="border-top pt-3">
-    <small class="text-muted">
-        <a href="{{ url_for('forgot_password') }}">Forgot password?</a><br>
-        <a href="{{ url_for('register') }}">Register</a>
-    </small>
-</div>
+    <div>
+        <h1>Sign In page</h1>
+        <form>
+            {{ form.hidden_tag() }}
+            <p>Enter your username and password.</p>
+            <fieldset class="input-userdata">
+                <div>
+                    {{ form.username.label(class="form-control-label") }}
+                    <br>
+                    {{ form.username(class="form-control form-control=lg") }}
+                </div>
+                <div>
+                    {{ form.password.label(class="form-control-label") }}
+                    <br>
+                    {{ form.password(class="form-control form-control=lg") }}
+                </div>
+                <div>
+                    {{ form.submit(class="submit-btn") }}
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="border-top pt-3">
+        <p class="text-muted">
+            <a href="{{ url_for('forgot_password') }}">Forgot password?</a><br>
+            <a href="{{ url_for('register') }}">Register</a>
+        </p>
+    </div>
 {% endblock content %}
