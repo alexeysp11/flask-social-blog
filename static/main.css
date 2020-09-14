@@ -17,6 +17,10 @@ h1, h2, h3, h4, h5, h6 {
     width: 250pt;
 }
 
+.forgot-password-fieldset {
+    width: 250pt;
+}
+
 .new-post-fieldset {
     width: 300pt;
 }
@@ -42,4 +46,5 @@ h1, h2, h3, h4, h5, h6 {
 .next-btn {
     height: 20pt;
     width: 75pt;
+    margin-top: 5pt;
 }
