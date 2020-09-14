@@ -6,9 +6,11 @@
     <div>
         <form class="registration-form">
             {{ form.hidden_tag() }}
-            <fieldset class="input-userdata">
-                <h1>Register</h1>
-                <p>Create an account. It's free and only takes a minute.</p>
+            <fieldset class="input-userdata-fieldset">
+                <div>
+                    <h1>Register</h1>
+                    <p>Create an account. It's free and only takes a minute.</p>
+                </div>
                 <div class="firstname-div">
                     {{ form.firstname.label(class="firstname-div") }}
                     <br>

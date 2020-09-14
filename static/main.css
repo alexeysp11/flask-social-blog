@@ -13,11 +13,11 @@ h1, h2, h3, h4, h5, h6 {
     text-align: left;
 }
 
-.input-userdata {
+.input-userdata-fieldset {
     width: 250pt;
 }
 
-.new-post {
+.new-post-fieldset {
     width: 300pt;
 }
 
@@ -29,8 +29,17 @@ h1, h2, h3, h4, h5, h6 {
     text-align: left;
 }
 
-.submit-btn {
+.text-field-div {
+    width: 250pt;
+}
+
+.submit-btn, .publish-btn {
     height: 20pt;
     width: 135pt;
     margin-top: 10pt;
+}
+
+.next-btn {
+    height: 20pt;
+    width: 75pt;
 }

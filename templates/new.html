@@ -3,17 +3,31 @@
 {% block title %}Create a new post{% endblock title %}
 
 {% block content %}
-    <form>
-        <fieldset class="new-post">
-            <h3>Create a new post</h3>
-            <label for="author">Author</label>
-            <input type="text" id="author" name="author"><br>
-            <label for="address">Address of post</label>
-            <input type="text" id="address" name="address"><br>
-            <label for="name_post">Name of the post </label>
-            <input type="text" id="name_post" name="name_post"><br>
-            <input type="text" id="text_post" name="text_post"><br>
-            <button>Publish</button>
-        </fieldset>
-    </form>
+    <div>
+        <form>
+            {{ form.hidden_tag() }}
+            <fieldset class="new-post-fieldset">
+                <h3>Create a new post</h3>
+                <div>
+                    {{ form.post_address.label(class="form-control-label") }}
+                        <br>
+                    {{ form.post_address(class="form-control form-control=lg") }}
+                </div>
+                <div>
+                    {{ form.name_of_post.label(class="form-control-label") }}
+                        <br>
+                    {{ form.name_of_post(class="form-control form-control=lg") }}
+                </div>
+                <div class="text-field-div">
+                    {{ form.text.label(class="form-control-label") }}
+                        <br>
+                    {{ form.text(class="form-control form-control=lg") }}
+                </div>
+                <div>
+                    {{ form.pusblish(class="publish-btn") }}
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    
 {% endblock content %}

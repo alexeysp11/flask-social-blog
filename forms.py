@@ -23,3 +23,15 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
+
+
+class ForgotPasswordForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    next_btn = SubmitField('Next')
+
+
+class NewPostForm(FlaskForm):
+    post_address = StringField('Post Address', validators=[DataRequired()])
+    name_of_post = StringField('Name of Post', validators=[DataRequired()])
+    text = StringField('Text', validators=[DataRequired()])
+    pusblish = SubmitField('Publish')
