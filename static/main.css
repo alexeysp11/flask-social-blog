@@ -6,6 +6,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     color: #444444;
+    text-align: center;
 }
 
 .registration-form {
@@ -14,6 +15,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .input-userdata {
     width: 250pt;
+}
+
+.new-post {
+    width: 300pt;
 }
 
 .firstname-div {
@@ -26,6 +31,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .submit-btn {
     height: 20pt;
-    width: 150pt;
+    width: 135pt;
     margin-top: 10pt;
 }

@@ -4,11 +4,11 @@
 
 {% block content %}
     <div>
-        <h1>Registration page</h1>
         <form class="registration-form">
             {{ form.hidden_tag() }}
-            <p>Create an accout. It's free and only takes a minute.</p>
             <fieldset class="input-userdata">
+                <h1>Register</h1>
+                <p>Create an account. It's free and only takes a minute.</p>
                 <div class="firstname-div">
                     {{ form.firstname.label(class="firstname-div") }}
                     <br>
@@ -42,13 +42,14 @@
                 <div>
                     {{ form.submit(class="submit-btn") }}
                 </div>
+                <div class="border-top pt-3">
+                    <hr>
+                    <p class="text-muted">
+                        Already have an account?
+                        <a href= "{{ url_for('login') }}">Sign In</a>
+                    </p>
+                </div>
             </fieldset>
         </form>
-    </div>
-    <div class="border-top pt-3">
-        <p class="text-muted">
-            Already have an account?
-            <a href= "{{ url_for('login') }}">Sign In</a>
-        </p>
     </div>
 {% endblock content %}
