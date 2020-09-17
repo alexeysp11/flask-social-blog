@@ -13,12 +13,20 @@ h1, h2, h3, h4, h5, h6 {
     text-align: left;
 }
 
-.input-userdata-fieldset {
+.register-fieldset, .login-fieldset {
     width: 250pt;
 }
 
 .forgot-password-fieldset {
     width: 250pt;
+}
+
+.feed-header-fieldset {
+    height: max-content;
+}
+
+.posts-fieldset {
+    width: 500pt;
 }
 
 .new-post-fieldset {
