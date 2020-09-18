@@ -5,7 +5,9 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '3d00b8c399db2c728fcb31aff3273960'
 
 """
-you can use flask.request and flask.make_response for http authentication
+NOTE:
+- you can use flask.request and flask.make_response for http authentication;
+- add some error handler e.g. @app.errorhandler(404)
 """
 
 posts = [
