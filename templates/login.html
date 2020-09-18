@@ -4,9 +4,9 @@
 
 {% block content %}
     <div>
-        <form>
+        <form class="login-form" method="POST">
             {{ form.hidden_tag() }}
-            <fieldset class="login-fieldset" method="POST">
+            <fieldset class="login-fieldset">
                 <h2>Sign In</h2>
                 <div>
                     {{ form.username.label(class="form-control-label") }}

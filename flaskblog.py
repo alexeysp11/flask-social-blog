@@ -45,6 +45,10 @@ def about():
 def login():
     form = forms.LoginForm()
 
+    if form.validate_on_submit(): 
+        flash(f'You succesfully entered into your account!')
+        return redirect(url_for('feed'))
+
     return render_template('login.html', form=form)
 
 
