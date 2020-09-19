@@ -4,6 +4,13 @@
 
 {% block content %}
 	<h1>Welcome to the flask-social-blog!</h1>
-	<a href="{{ url_for('login') }}">Sign In</a><br>
-	<a href="{{ url_for('register') }}">Register</a>
+	<form>
+		<a href="{{ url_for('login') }}">
+			<button class="submit-btn">Sign In</button>
+		</a>
+		<br>
+		<a href="{{ url_for('register') }}">
+			<button class="submit-btn">Register</button>
+		</a>
+	</form>
 {% endblock content %}
