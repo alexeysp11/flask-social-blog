@@ -3,14 +3,25 @@
 {% block title %}Username{% endblock title %}
 
 {% block content %}
-    <h1>Username</h1>
-	<h2>Number of posts</h2>
-	<button>Follow</button>
-    <button>Message</button>
-    <h1>Posts</h1>
-    {% for post in posts %}
-		<h2>{{ post.title }}</h2>
-		<p>By {{ post.author }} on {{ post.date_posted }}</p>
-		<p>{{ post.content }}</p>
-	{% endfor %}
+	<form>
+		<fieldset class="user-info-fieldset">
+			<div class="user-info">
+				<p>Username</p>
+				<p>Number of posts</p>
+			</div>
+			<div class="user-info-btns">
+				<button class="submit-btn">Follow</button>
+				<br>
+				<button class="submit-btn">Message</button>
+			</div>
+		</fieldset>
+		<fieldset class="posts-fieldset">
+			<p>Posts</p>
+			{% for post in posts %}
+				<p>{{ post.title }}</p>
+				<p>By {{ post.author }} on {{ post.date_posted }}</p>
+				<p>{{ post.content }}</p>
+			{% endfor %}
+		</fieldset>
+	</form>
 {% endblock content %}
