@@ -40,18 +40,10 @@ body {
     width: 500pt;
 }
 
-.new-post-fieldset {
-    width: 300pt;
-}
-
 .firstname-div {
     text-align: left;
 }
 
 .lastname-div {
     text-align: left;
-}
-
-.text-field-div {
-    width: 250pt;
 }

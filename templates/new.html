@@ -8,23 +8,26 @@
             {{ form.hidden_tag() }}
             <fieldset class="new-post-fieldset">
                 <h3>Create a new post</h3>
-                <div>
+                <div class="post-author-div">
+                    <p>Author Username</p>
+                </div>
+                <div class="post-address-div">
                     {{ form.post_address.label(class="form-control-label") }}
-                        <br>
+                    <br>
                     {{ form.post_address(class="form-control form-control=lg") }}
                 </div>
-                <div>
+                <div class="post-name-div">
                     {{ form.name_of_post.label(class="form-control-label") }}
-                        <br>
+                    <br>
                     {{ form.name_of_post(class="form-control form-control=lg") }}
                 </div>
-                <div class="text-field-div">
+                <div class="post-text-div">
                     {{ form.text.label(class="form-control-label") }}
-                        <br>
+                    <br>
                     {{ form.text(class="form-control form-control=lg") }}
                 </div>
                 <div>
-                    {{ form.pusblish(class="publish-btn") }}
+                    {{ form.pusblish(class="post-publish-btn") }}
                 </div>
             </fieldset>
         </form>

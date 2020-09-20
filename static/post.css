@@ -1,0 +1,53 @@
+.new-post-fieldset {
+    height: 250pt;
+    width: 300pt;
+}
+
+.post-author-div {
+    position: absolute;
+    top: 100pt;
+    left: 20pt;
+    height: 10pt;
+    width: 150pt;
+}
+
+.post-address-div {
+    position: absolute;
+    top: 100pt;
+    left: 175pt;
+    height: 10pt;
+    width: 150pt;
+}
+
+.post-name-div {
+    position: absolute;
+    top: 125pt;
+    left: 20pt;
+    height: 10pt;
+    width: 150pt;
+}
+
+.post-name-div {
+    position: absolute;
+    top: 125pt;
+    left: 20pt;
+    height: 10pt;
+    width: 150pt;
+}
+
+.post-text-div {
+    position: absolute;
+    top: 160pt;
+    left: 20pt;
+    height: 10pt;
+    width: 250pt;
+}
+
+.post-publish-btn {
+    position: absolute;
+    top: 200pt;
+    left: 20pt;
+    height: 20pt;
+    width: 135pt;
+    margin-top: 10pt;
+}
