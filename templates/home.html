@@ -3,16 +3,19 @@
 {% block title %}Flask Social Blog{% endblock title %}
 
 {% block content %}
-	<h1>Welcome to the flask-social-blog!</h1>
-	<form>
-		<div>
+	<form class="homepage-form">
+		<h1>Welcome to the flask-social-blog!</h1>
+		<fieldset class="home-about-fieldset">
+			Some information about this site.
+		</fieldset>
+		<fieldset class="home-register-login-fieldset">
+			<p>Do you hav an account?</p>
 			<a href="{{ url_for('login') }}">
-				<button class="submit-btn">Sign In</button>
+				<button class="home-login-btn">Sign In</button>
 			</a>
-			<br>
 			<a href="{{ url_for('register') }}">
-				<button class="submit-btn">Register</button>
+				<button class="home-register-btn">Register</button>
 			</a>
-		</div>
+		</fieldset>
 	</form>
 {% endblock content %}

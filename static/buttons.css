@@ -1,0 +1,29 @@
+.submit-btn, .publish-btn {
+    height: 20pt;
+    width: 135pt;
+    margin-top: 10pt;
+}
+
+.next-btn {
+    height: 20pt;
+    width: 75pt;
+    margin-top: 5pt;
+}
+
+.home-login-btn {
+    position: absolute;
+    top: 150pt;
+    left: 50pt;
+    height: 20pt;
+    width: 135pt;
+    margin-top: 10pt;
+}
+
+.home-register-btn {
+    position: absolute;
+    top: 180pt;
+    left: 50pt;
+    height: 20pt;
+    width: 135pt;
+    margin-top: 10pt;
+}

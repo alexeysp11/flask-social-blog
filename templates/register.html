@@ -3,55 +3,53 @@
 {% block title %}Register{% endblock title %}
 
 {% block content %}
-    <div>
-        <form class="registration-form" method="POST">
-            {{ form.hidden_tag() }}
-            <fieldset class="register-fieldset">
-                <div>
-                    <h1>Register</h1>
-                    <p>Create an account. It's free and only takes a minute.</p>
-                </div>
-                <div class="firstname-div">
-                    {{ form.firstname.label(class="firstname-div") }}
-                    <br>
-                    {{ form.firstname(class="firstname-div") }}
-                </div>
-                <div class="lastname-div">
-                    {{ form.lastname.label(class="lastname-div") }}
-                    <br>
-                    {{ form.lastname(class="lastname-div") }}
-                </div>
-                <div class="form-group">
-                    {{ form.username.label(class="form-control-label") }}
-                    <br>
-                    {{ form.username(class="form-control form-control=lg") }}
-                </div>
-                <div class="form-group">
-                    {{ form.email.label(class="form-control-label") }}
-                    <br>
-                    {{ form.email(class="form-control form-control=lg") }}
-                </div>
-                <div class="form-group">
-                    {{ form.password.label(class="form-control-label") }}
-                    <br>
-                    {{ form.password(class="form-control form-control=lg") }}
-                </div>
-                <div class="form-group">
-                    {{ form.confirm_password.label(class="form-control-label") }}
-                    <br>
-                    {{ form.confirm_password(class="form-control form-control=lg") }}
-                </div>
-                <div>
-                    {{ form.submit(class="submit-btn") }}
-                </div>
-                <div class="border-top pt-3">
-                    <hr>
-                    <p class="text-muted">
-                        Already have an account?
-                        <a href= "{{ url_for('login') }}">Sign In</a>
-                    </p>
-                </div>
-            </fieldset>
-        </form>
-    </div>
+    <form class="registration-form" method="POST">
+        {{ form.hidden_tag() }}
+        <fieldset class="register-fieldset">
+            <div>
+                <h1>Register</h1>
+                <p>Create an account. It's free and only takes a minute.</p>
+            </div>
+            <div class="firstname-div">
+                {{ form.firstname.label(class="firstname-div") }}
+                <br>
+                {{ form.firstname(class="firstname-div") }}
+            </div>
+            <div class="lastname-div">
+                {{ form.lastname.label(class="lastname-div") }}
+                <br>
+                {{ form.lastname(class="lastname-div") }}
+            </div>
+            <div class="form-group">
+                {{ form.username.label(class="form-control-label") }}
+                <br>
+                {{ form.username(class="form-control form-control=lg") }}
+            </div>
+            <div class="form-group">
+                {{ form.email.label(class="form-control-label") }}
+                <br>
+                {{ form.email(class="form-control form-control=lg") }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label(class="form-control-label") }}
+                <br>
+                {{ form.password(class="form-control form-control=lg") }}
+            </div>
+            <div class="form-group">
+                {{ form.confirm_password.label(class="form-control-label") }}
+                <br>
+                {{ form.confirm_password(class="form-control form-control=lg") }}
+            </div>
+            <div>
+                {{ form.submit(class="submit-btn") }}
+            </div>
+            <div class="border-top pt-3">
+                <hr>
+                <p class="text-muted">
+                    Already have an account?
+                    <a href="{{ url_for('login') }}">Sign In</a>
+                </p>
+            </div>
+        </fieldset>
+    </form>
 {% endblock content %}

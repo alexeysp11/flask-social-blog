@@ -4,36 +4,20 @@ body {
     margin-top: 5rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: #444444;
-    text-align: center;
-}
-
-.nav-bar {
-    list-style-type: none;
-    margin-left: 10pt;
-    padding: 0;
-}
-
-.navbar-brand {
+.home-about-fieldset {
     position: absolute;
-    top: 0pt;
+    top: 100pt;
     left: 10pt;
-    width: 150pt;
+    height: 250pt;
+    width: 250pt;
 }
 
-.navbar-home-about {
+.home-register-login-fieldset {
     position: absolute;
-    top: 0pt;
-    left: 130pt;
-    width: 150pt;
-}
-
-.navbar-nav {
-    position: absolute;
-    top: 0pt;
-    left: 500pt;
-    width: 150pt;
+    top: 100pt;
+    left: 350pt;
+    height: 250pt;
+    width: 250pt;
 }
 
 .registration-form {
@@ -70,16 +54,4 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-field-div {
     width: 250pt;
-}
-
-.submit-btn, .publish-btn {
-    height: 20pt;
-    width: 135pt;
-    margin-top: 10pt;
-}
-
-.next-btn {
-    height: 20pt;
-    width: 75pt;
-    margin-top: 5pt;
 }
