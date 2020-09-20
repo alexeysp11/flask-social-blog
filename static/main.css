@@ -11,9 +11,30 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-bar {
     list-style-type: none;
-    margin-left: 10;
+    margin-left: 10pt;
     padding: 0;
-  }
+}
+
+.navbar-brand {
+    position: absolute;
+    top: 0pt;
+    left: 10pt;
+    width: 150pt;
+}
+
+.navbar-home-about {
+    position: absolute;
+    top: 0pt;
+    left: 130pt;
+    width: 150pt;
+}
+
+.navbar-nav {
+    position: absolute;
+    top: 0pt;
+    left: 500pt;
+    width: 150pt;
+}
 
 .registration-form {
     text-align: left;
