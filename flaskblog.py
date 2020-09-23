@@ -1,14 +1,42 @@
 from flask import Flask, render_template, url_for, request, flash, redirect
+from flask_sqlalchemy import SQLAlchemy
 import forms
-app = Flask(__name__)
+from datetime import datetime
 
+app = Flask(__name__)
 app.config['SECRET_KEY'] = '3d00b8c399db2c728fcb31aff3273960'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+db = SQLAlchemy(app)
+
 
 """
 NOTE:
-- you can use flask.request and flask.make_response for http authentication;
-- add some error handler e.g. @app.errorhandler(404)
+- you can use flask.request and flask.make_response for http authentication
 """
+
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.String(20), nullable=False)
+    lastname = db.Column(db.String(20), nullable=False)
+    username = db.Column(db.String(20), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(60), unique=True, nullable=False)
+    #posts = db.relastionship('Post', backref=db.backref('posts', lazy=True))
+
+    def __repr__(self):
+        return f"User('{self.firstname}, {self.lastname}, {self.username}')"
+
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name_of_post = db.Column(db.String(100), nullable=False)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    text = db.Column(db.Text, nullable=False)
+
+    def __repr__(self):
+        return f"User('{self.name_of_post}, {self.date}, {self.text}')"
+
 
 posts = [
     {
