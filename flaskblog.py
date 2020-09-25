@@ -1,42 +1,18 @@
-from flask import Flask, render_template, url_for, request, flash, redirect
-from flask_sqlalchemy import SQLAlchemy
-import forms
-from datetime import datetime
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = '3d00b8c399db2c728fcb31aff3273960'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app)
-
-
 """
 NOTE:
 - you can use flask.request and flask.make_response for http authentication
 """
 
-
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    firstname = db.Column(db.String(20), nullable=False)
-    lastname = db.Column(db.String(20), nullable=False)
-    username = db.Column(db.String(20), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(60), unique=True, nullable=False)
-    #posts = db.relastionship('Post', backref=db.backref('posts', lazy=True))
-
-    def __repr__(self):
-        return f"User('{self.firstname}, {self.lastname}, {self.username}')"
+from flask import Flask, render_template, url_for, request, flash, redirect
+import forms
+from database import User, Post
 
 
-class Post(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name_of_post = db.Column(db.String(100), nullable=False)
-    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    text = db.Column(db.Text, nullable=False)
+app = Flask(__name__)
+app.config['SECRET_KEY'] = '3d00b8c399db2c728fcb31aff3273960'
 
-    def __repr__(self):
-        return f"User('{self.name_of_post}, {self.date}, {self.text}')"
-
+from auth import auth_blueprint
+app.register_blueprint(auth_blueprint)
 
 posts = [
     {
@@ -69,34 +45,6 @@ def home():
 @app.route("/about")
 def about():
     return render_template('about.html')
-
-
-@app.route("/login", methods=['GET', 'POST'])
-def login():
-    form = forms.LoginForm()
-
-    if form.validate_on_submit(): 
-        flash(f'You succesfully entered into your account!')
-        return redirect(url_for('feed'))
-
-    return render_template('login.html', form=form)
-
-
-@app.route("/register", methods=['GET', 'POST'])
-def register():
-    form = forms.RegistrationForm()
-    
-    if form.validate_on_submit(): 
-        flash(f'Account succesfully created!')
-        return redirect(url_for('feed'))
-    
-    return render_template('register.html', form=form)
-
-
-@app.route("/forgot_password")
-def forgot_password():
-    form = forms.ForgotPasswordForm()
-    return render_template('forgot_password.html', form=form)
 
 
 @app.route("/profile")

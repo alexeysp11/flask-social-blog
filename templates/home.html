@@ -4,20 +4,20 @@
 
 {% block content %}
 	<form class="homepage-form">
-		<h1>Welcome to the flask-social-blog!</h1>
 		<fieldset class="home-about-fieldset">
+			<h2>Welcome to the<br>flask-social-blog!</h2>
 			Some information about this site.
 		</fieldset>
 		<fieldset class="home-register-login-fieldset">
 			<p>Do you have an account?</p>
 			<div>
-				<a id="Login" href="{{ url_for('login') }}">
+				<a id="Login" href="{{ url_for('auth.login') }}">
 					<input 
 						class="home-login-btn"
 						type="button" value="Login"
 					/>
 				</a>
-				<a id="Register" href="{{ url_for('register') }}">
+				<a id="Register" href="{{ url_for('auth.register') }}">
 					<input 
 						class="home-register-btn"
 						type="button" value="Register"

@@ -29,19 +29,18 @@
 							<button>About</button>
 						</a>
 					</div>
-					<!-- Navbar Right Side -->
 					<div class="navbar-nav">
-						<a href="{{ url_for('login') }}">
+						<a href="{{ url_for('auth.login') }}">
 							<button>Login</button>
 						</a>
-						<a href="{{ url_for('register') }}">
+						<a href="{{ url_for('auth.register') }}">
 							<button>Register</button>
 						</a>
 					</div>
 				</div>
 			</nav>
 		</header>
-		
+
 		{% with messages = get_flashed_messages(with_categories=true) %}
 			{% if messages %}
 				{% for category, message in messages %}
