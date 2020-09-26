@@ -52,15 +52,42 @@ def profile():
     return render_template('profile.html', posts=posts)
 
 
-@app.route("/feed")
+@app.route("/feed", methods=['GET', 'POST'])
 def feed():
-    return render_template('feed.html', posts=posts)
+    # download posts from db
+    
+    if request.method == "POST": 
+        return render_template('new.html', form=forms.NewPostForm())
+    
+    else:
+        return render_template('feed.html', posts=posts)
 
 
-@app.route("/new")
+# new post
+@app.route("/new", methods=['GET', 'POST'])
 def new():
     form = forms.NewPostForm()
-    return render_template('new.html', form=form)
+    
+    if form.validate_on_submit(): 
+        address = Post(post_address=request.form['post_address'])
+        name = Post(name_of_post=request.form['name_of_post'])
+        text = Post(text=request.form['text'])
+
+        try:
+            db.session.add(address)
+            db.session.add(name)
+            db.session.add(text)
+
+            db.session.commit()
+            
+            return redirect(url_for('feed'))
+        
+        except:
+            flash(f'Try again!')
+            return render_template('new.html', form=form)
+    
+    else: 
+        return render_template('new.html', form=form)
 
 
 @app.errorhandler(404)

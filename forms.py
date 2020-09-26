@@ -28,6 +28,7 @@ class LoginForm(FlaskForm):
 class ForgotPasswordForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     code = StringField('Code', validators=[DataRequired()])
+    new_password = StringField('New password', validators=[DataRequired()])
     next_btn = SubmitField('Next')
 
 

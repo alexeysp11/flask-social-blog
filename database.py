@@ -16,7 +16,8 @@ class User(db.Model):
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), unique=True, nullable=False)
-    posts = db.relationship('Post', backref=db.backref('author', lazy=True))
+    posts = db.relationship('Post', backref=db.backref('author', lazy=True), 
+                            primaryjoin="User.id == Post.user_id")
 
     def __repr__(self):
         return f"User('{self.id}, {self.firstname}, {self.lastname}, {self.username}')"
@@ -24,6 +25,7 @@ class User(db.Model):
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    post_address = db.Column(db.String(30), nullable=False)
     name_of_post = db.Column(db.String(100), nullable=False)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     text = db.Column(db.Text, nullable=False)
