@@ -15,6 +15,7 @@
 		</title>
 	</head>
 	<body>
+		<!--
 		<header class="site-header">
 			<nav class="navbar">
 				<div class="container">
@@ -40,6 +41,23 @@
 				</div>
 			</nav>
 		</header>
+		-->
+		<nav>
+			<div class="logo">
+				<p>Flask-social blog</p>
+			</div>
+			<ul class="nav-links">
+				<li><a href="{{ url_for('home') }}">Home</a></li>
+				<li><a href="{{ url_for('about') }}">About</a></li>
+				<li><a href="{{ url_for('auth.login') }}">Login</a></li>
+				<li><a href="{{ url_for('auth.register') }}">Register</a></li>
+			</ul>
+			<div class="burger">
+				<div class="line01"></div>
+				<div class="line02"></div>
+				<div class="line03"></div>
+			</div>
+		</nav>
 
 		{% with messages = get_flashed_messages(with_categories=true) %}
 			{% if messages %}
