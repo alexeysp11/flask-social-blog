@@ -2,6 +2,7 @@ nav {
     position: absolute;
     top: 0pt;
     left: 0pt;
+    margin: 0;
     display: flex;
     box-sizing: border-box;
     justify-content: space-around; 
@@ -21,6 +22,7 @@ nav {
 
 .nav-links {
     display: flex;
+    width: auto;
 }
 
 .nav-links a {
