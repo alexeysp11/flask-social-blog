@@ -1,6 +1,7 @@
 import sys
 sys.path.append("..")
 from flask import current_app, Blueprint, render_template, url_for, request, flash, redirect
+from flask_login import login_user, login_required
 from app import forms
 from flask_sqlalchemy import SQLAlchemy
 from app import db
@@ -8,11 +9,6 @@ from app.models import User, Post
 
 auth_blueprint = Blueprint('auth', __name__, template_folder='../templates/auth')
 
-"""
-app = Flask(__name__)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-"""
 
 @auth_blueprint.route("/login", methods=['GET', 'POST'])
 def login():
@@ -25,13 +21,15 @@ def login():
         user = User.query.filter_by(username=username).first()
 
         if password == user.password: 
+            login_user(user, form.remember.data)
+
             flash(f'You succesfully entered into your account!')
 
             return redirect(url_for('user.feed'))
         
         else: 
             flash(f'Incorrect password!')
-            
+
             return render_template('login.html', form=form)
     
     else: 
@@ -96,3 +94,10 @@ def forgot_password(page):
         
     else: 
         return render_template('forgot_password.html', form=form, page=page)
+
+
+@auth_blueprint.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return render_template('home.html')

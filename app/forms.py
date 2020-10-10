@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, EqualTo
 
-# You can install 'email_validator' for email validation support!
+# You can also install 'email_validator' for email validation support!
 
 class RegistrationForm(FlaskForm): 
     firstname = StringField('First name', 

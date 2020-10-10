@@ -1,4 +1,5 @@
-from app import db
+from app import db, login_manager
+from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -9,7 +10,13 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 """
 
-class User(db.Model):
+@login_manager.user_loader
+def load_user(id):
+    u = User.query.get(id)
+    return User(u.firstname, u.lastname, u.username, u.email, u.password)
+
+
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     firstname = db.Column(db.String(20), nullable=False)
     lastname = db.Column(db.String(20), nullable=False)

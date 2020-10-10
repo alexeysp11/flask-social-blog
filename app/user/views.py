@@ -1,14 +1,16 @@
 import sys
 sys.path.append("..")
 from flask import current_app, Blueprint, render_template, url_for, request, flash, redirect
-from app import forms
-from app import db 
+from flask_login import login_required
+from app import forms, db
+#from app import db 
 from app.models import User, Post
 
 user_blueprint = Blueprint('user', __name__, template_folder='../templates/user')
 
 
 @user_blueprint.route("/profile/<username>", methods=['GET', 'POST'])
+@login_required
 def profile(username):
     user = User.query.filter_by(username=username)
     
@@ -16,6 +18,7 @@ def profile(username):
 
 
 @user_blueprint.route("/feed", methods=['GET', 'POST'])
+@login_required
 def feed():
     # download posts from db
     
@@ -28,6 +31,7 @@ def feed():
 
 # new post
 @user_blueprint.route("/new", methods=['GET', 'POST'])
+@login_required
 def new():
     form = forms.NewPostForm()
     
