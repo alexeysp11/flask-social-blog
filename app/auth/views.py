@@ -1,7 +1,7 @@
 import sys
 sys.path.append("..")
 from flask import current_app, Blueprint, render_template, url_for, request, flash, redirect
-from flask_login import login_user, login_required
+from flask_login import login_user, logout_user, login_required
 from app import forms
 from flask_sqlalchemy import SQLAlchemy
 from app import db
@@ -100,4 +100,6 @@ def forgot_password(page):
 @login_required
 def logout():
     logout_user()
+    flash('You have been logged out.')
+    
     return render_template('home.html')

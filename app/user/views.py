@@ -29,7 +29,6 @@ def feed():
         return render_template('feed.html', posts=Post.query.all())
 
 
-# new post
 @user_blueprint.route("/new", methods=['GET', 'POST'])
 @login_required
 def new():
@@ -55,3 +54,15 @@ def new():
     
     else: 
         return render_template('new.html', form=form)
+
+
+@user_blueprint.route("/followers", methods=['GET', 'POST'])
+@login_required
+def followers():
+    pass 
+
+
+@user_blueprint.route("/followed_by", methods=['GET', 'POST'])
+@login_required
+def followed_by():
+    pass
