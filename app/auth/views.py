@@ -19,17 +19,21 @@ def login():
         password = request.form['password']
         
         user = User.query.filter_by(username=username).first()
-
-        if password == user.password: 
-            login_user(user, form.remember.data)
-
-            flash(f'You succesfully entered into your account!')
-
-            return redirect(url_for('user.feed'))
         
-        else: 
-            flash(f'Incorrect password!')
+        try: 
+            if password == user.password: 
+                login_user(user, form.remember.data)
 
+                flash(f'You succesfully entered into your account!')
+
+                return redirect(url_for('user.feed'))
+            
+            else: 
+                flash(f'Incorrect password!')
+                return render_template('login.html', form=form)
+        
+        except: 
+            flash(f'Incorrect username!')
             return render_template('login.html', form=form)
     
     else: 
@@ -62,7 +66,6 @@ def register():
             
             except Exception as e:
                 flash(f'Error while inserting data into DB!')
-                flash(f'{ e }')
 
                 return render_template('register.html', form=form)
         

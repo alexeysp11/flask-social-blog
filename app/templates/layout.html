@@ -15,33 +15,6 @@
 		</title>
 	</head>
 	<body>
-		<!--
-		<header class="site-header">
-			<nav class="navbar">
-				<div class="container">
-					<a class="navbar-brand" href="{{ url_for('home') }}">
-						<button>Flask Social Blog</button>
-					</a>
-					<div class="navbar-home-about">
-						<a href="{{ url_for('home') }}">
-							<button>Home</button>
-						</a>
-						<a href="{{ url_for('about') }}">
-							<button>About</button>
-						</a>
-					</div>
-					<div class="navbar-nav">
-						<a href="{{ url_for('auth.login') }}">
-							<button>Login</button>
-						</a>
-						<a href="{{ url_for('auth.register') }}">
-							<button>Register</button>
-						</a>
-					</div>
-				</div>
-			</nav>
-		</header>
-		-->
 		<nav>
 			<div class="logo">
 				<p>Flask-social blog</p>
@@ -51,7 +24,7 @@
 				<li><a href="{{ url_for('about') }}">About</a></li>
 				{% if current_user.is_authenticated %}
 					<li>
-						<a href="{{ url_for('user.profile', username=username) }}">
+						<a href="{{ url_for('user.profile', username=current_user.username) }}">
 							Profile
 						</a>
 					</li>

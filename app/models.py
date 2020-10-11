@@ -3,12 +3,6 @@ from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-"""
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-"""
 
 @login_manager.user_loader
 def load_user(id):
@@ -48,13 +42,13 @@ class Post(db.Model):
     user = db.relationship('User',
         backref=db.backref('posts', lazy=True))
 
-    def __init__(self, post_address='', title='', date='', text=''): 
+    # you can use **kwargs for __init__()
+    def __init__(self, post_address='', title='', text=''): 
         self.post_address = post_address
         self.title = title
-        self.date = date
         self.text = text
     
     def __repr__(self):
-        return f"Post('{self.title}, {self.date}, {self.text}')"
+        return f"Post('{self.user.username}, {self.title}, {self.date}, {self.text}')"
 
 db.create_all()

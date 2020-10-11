@@ -6,10 +6,11 @@
     <div>
         <form method="POST">
             {{ form.hidden_tag() }}
+            <!--{{ form.csrf_token }}-->
             <fieldset class="new-post-fieldset">
                 <h3>Create a new post</h3>
                 <div class="post-author-div">
-                    <p>Author Username</p>
+                    <p>Author: {{ current_user.username }}</p>
                 </div>
                 <div class="post-address-div">
                     {{ form.post_address.label(class="form-control-label") }}

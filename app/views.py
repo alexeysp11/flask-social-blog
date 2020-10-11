@@ -15,16 +15,16 @@ app.register_blueprint(user_blueprint)
 @app.route("/home")
 def home():
     if current_user.is_authenticated: 
-        user = User.query.filter_by(id=current_user.get_id())
-        
-        return redirect(url_for('user.feed', username=user))
+        return redirect(url_for('user.feed'))
     
     else:
         return render_template('home.html')
 
+
 @app.route("/about")
 def about():
     return render_template('about.html')
+
 
 @app.errorhandler(404)
 def error404(e):

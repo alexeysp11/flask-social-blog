@@ -19,8 +19,8 @@
 			<p>Posts</p>
 			{% for post in posts %}
 				<p>{{ post.title }}</p>
-				<p>By {{ post.author }} on {{ post.date_posted }}</p>
-				<p>{{ post.content }}</p>
+				<p>By {{ post.user.username }} on {{ post.date }}</p>
+				<p>{{ post.text }}</p>
 			{% endfor %}
 		</fieldset>
 	</form>
