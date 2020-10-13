@@ -29,6 +29,13 @@ def feed():
         return render_template('feed.html', posts=Post.query.all())
 
 
+@user_blueprint.route("/posts/<post_id>", methods=['GET', 'POST'])
+@login_required
+def posts(post_id):
+    post = Post.query.filter_by(id=post_id).first()
+    return render_template('posts.html', post=post)
+
+
 @user_blueprint.route("/new", methods=['GET', 'POST'])
 @login_required
 def new():
@@ -38,8 +45,6 @@ def new():
         post_address = request.form['post_address']
         title = request.form['title']
         text = request.form['text']
-        
-        
         
         try:
             username = current_user.username

@@ -9,11 +9,23 @@
 				<h1>Feed</h1>
 				<button>New post</button>
 			</fieldset>
-			<fieldset class="posts-fieldset">
+			<fieldset class="feed-fieldset">
 				{% for post in posts %}
-					<h2>{{ post.title }}</h2>
-					<p>By {{ post.user.username }} on {{ post.date }}</p>
-					<p>{{ post.text }}</p>
+					<fieldset class="posts-fieldset">
+						<h2>
+							<a href="{{ url_for('user.posts', post_id=post.id) }}">
+								{{ post.title }}
+							</a> 
+						</h2>
+						<p>
+							By 
+							<a href="{{ url_for('user.profile', username=post.user.username) }}">
+								{{ post.user.username }}
+							</a> 
+							on {{ post.date }}
+						</p>
+						<p>{{ post.text }}</p>
+					</fieldset>
 				{% endfor %}
 			</fieldset>
 		</form>
