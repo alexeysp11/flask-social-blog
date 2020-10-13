@@ -37,3 +37,7 @@ class NewPostForm(FlaskForm):
     title = StringField('Name of Post', validators=[DataRequired()])
     text = StringField('Text', validators=[DataRequired()])
     pusblish = SubmitField('Publish')
+
+class CommentsForPostForm(FlaskForm): 
+    text = StringField('Comment', validators=[DataRequired()])
+    pusblish = SubmitField('Publish')

@@ -42,7 +42,6 @@ class Post(db.Model):
     user = db.relationship('User',
         backref=db.backref('posts', lazy=True))
 
-    # you can use **kwargs for __init__()
     def __init__(self, post_address='', title='', text=''): 
         self.post_address = post_address
         self.title = title
@@ -50,5 +49,23 @@ class Post(db.Model):
     
     def __repr__(self):
         return f"Post('{self.user.username}, {self.title}, {self.date}, {self.text}')"
+
+
+class Comments(db.Model): 
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    text = db.Column(db.Text, nullable=False)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'),
+        nullable=False)
+    post = db.relationship('Post',
+        backref=db.backref('comments', lazy=True))
+
+    def __init__(self, text=''): 
+        self.text = text
+    
+    def __repr__(self):
+        return f"Comments('{self.post.title}, {self.date}, {self.text}')"
+
 
 db.create_all()

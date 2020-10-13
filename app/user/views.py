@@ -3,7 +3,7 @@ sys.path.append("..")
 from flask import current_app, Blueprint, render_template, url_for, request, flash, redirect
 from flask_login import login_required,current_user
 from app import forms, db
-from app.models import User, Post
+from app.models import User, Post, Comments
 
 user_blueprint = Blueprint('user', __name__, template_folder='../templates/user')
 
@@ -20,8 +20,6 @@ def profile(username):
 @user_blueprint.route("/feed", methods=['GET', 'POST'])
 @login_required
 def feed():
-    # download posts from db
-    
     if request.method == "POST": 
         return redirect(url_for('user.new'))
     
@@ -32,8 +30,31 @@ def feed():
 @user_blueprint.route("/posts/<post_id>", methods=['GET', 'POST'])
 @login_required
 def posts(post_id):
+    form = forms.CommentsForPostForm()
+    
     post = Post.query.filter_by(id=post_id).first()
-    return render_template('posts.html', post=post)
+    comments = Comments.query.filter_by(post_id=post.id).all()
+    
+    if form.validate_on_submit(): 
+        text = request.form['text']
+
+        try:
+            post = Post.query.filter_by(id=post_id).first()
+
+            comment = Comments(text=text)
+            post.comments.append(comment)
+            db.session.commit()
+            
+            return redirect(url_for('user.posts', post_id=post_id))
+        
+        except Exception as e: 
+            flash(f'Error while importing into DB!')
+            flash(f'{ e }')
+            
+            return redirect(url_for('user.posts', post_id=post_id))
+    
+    else:
+        return render_template('posts.html', form=form, post=post, comments=comments)
 
 
 @user_blueprint.route("/new", methods=['GET', 'POST'])
