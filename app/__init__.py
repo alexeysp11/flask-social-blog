@@ -1,12 +1,16 @@
 from flask import Flask, Blueprint, render_template, url_for, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_login import LoginManager
 
 app = Flask(__name__)
+
 app.config['SECRET_KEY'] = '3d00b8c399db2c728fcb31aff3273960'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 login_manager = LoginManager()
 login_manager.init_app(app)

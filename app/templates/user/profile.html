@@ -19,7 +19,7 @@
 			<p>Posts</p>
 			{% for post in posts %}
 				<p>{{ post.title }}</p>
-				<p>By {{ post.user.username }} on {{ post.date }}</p>
+				<p>By {{ post.author.username }} on {{ post.date }}</p>
 				<p>{{ post.text }}</p>
 			{% endfor %}
 		</fieldset>

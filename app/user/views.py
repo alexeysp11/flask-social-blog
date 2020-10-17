@@ -1,9 +1,11 @@
 import sys
 sys.path.append("..")
 from flask import current_app, Blueprint, render_template, url_for, request, flash, redirect
-from flask_login import login_required,current_user
+from flask_login import login_required, current_user
 from app import forms, db
 from app.models import User, Post, Comments
+from sqlalchemy.orm import session, sessionmaker
+
 
 user_blueprint = Blueprint('user', __name__, template_folder='../templates/user')
 
@@ -37,13 +39,28 @@ def posts(post_id):
     
     if form.validate_on_submit(): 
         text = request.form['text']
-
+        
         try:
-            post = Post.query.filter_by(id=post_id).first()
+            username = current_user.username
+            user = User.query.filter_by(username=username).first()
+            
+            comment = Comments(text=text, post_id=post_id, author_id=user.id)
+            
+            """
+            # create a configured "Session" class
+            Session = sessionmaker(autoflush=False)
 
-            comment = Comments(text=text)
+            # create a Session
+            session = Session()
+
+            user.comments.append(comment)
             post.comments.append(comment)
+            """
+            
+            db.session.add(comment)
             db.session.commit()
+
+            flash('Your comment has been published.')
             
             return redirect(url_for('user.posts', post_id=post_id))
         

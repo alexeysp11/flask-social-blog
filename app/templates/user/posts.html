@@ -14,8 +14,8 @@
                 </h2>
                 <p>
                     By 
-                    <a href="{{ url_for('user.profile', username=post.user.username) }}">
-                        {{ post.user.username }}
+                    <a href="{{ url_for('user.profile', username=post.author.username) }}">
+                        {{ post.author.username }}
                     </a> 
                     on {{ post.date }}
                 </p>
