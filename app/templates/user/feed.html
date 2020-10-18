@@ -22,7 +22,8 @@
 							<a href="{{ url_for('user.profile', username=post.author.username) }}">
 								{{ post.author.username }}
 							</a> 
-							on {{ post.date }}
+							on {{ post.date.strftime('%d, %b %Y') }}
+ }}
 						</p>
 						<p>{{ post.text }}</p>
 					</fieldset>

@@ -17,7 +17,7 @@
                     <a href="{{ url_for('user.profile', username=post.author.username) }}">
                         {{ post.author.username }}
                     </a> 
-                    on {{ post.date }}
+                    on {{ post.date.strftime('%d, %b %Y') }}
                 </p>
                 <p>{{ post.text }}</p>
             </fieldset>
@@ -25,8 +25,10 @@
                 {% for comment in comments %}
                     <p>
                         By 
-                        User
-                        on {{ comment.date }}
+                        <a href="{{ url_for('user.profile', username=post.author.username) }}">
+                            {{ comment.author.username }}
+                        </a>
+                        on {{ comment.date.strftime('%d, %b %Y') }}
                     </p>
                     <p>{{ comment.text }}</p>
                 {% endfor %}

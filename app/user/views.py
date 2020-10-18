@@ -4,6 +4,7 @@ from flask import current_app, Blueprint, render_template, url_for, request, fla
 from flask_login import login_required, current_user
 from app import forms, db
 from app.models import User, Post, Comments
+from sqlalchemy import func
 from sqlalchemy.orm import session, sessionmaker
 
 
@@ -14,9 +15,13 @@ user_blueprint = Blueprint('user', __name__, template_folder='../templates/user'
 @login_required
 def profile(username):
     user = User.query.filter_by(username=username).first()
+    posts = Post.query.filter_by(author=user).all()
+    num_posts = len(posts)
     
-    return render_template('profile.html', username=username, 
-                            posts=Post.query.all())
+    return render_template('profile.html', 
+                            username=username, 
+                            num_posts=num_posts,
+                            posts=posts)
 
 
 @user_blueprint.route("/feed", methods=['GET', 'POST'])
