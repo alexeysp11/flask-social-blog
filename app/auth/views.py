@@ -2,6 +2,7 @@ import sys
 sys.path.append("..")
 from flask import current_app, Blueprint, render_template, url_for, request, flash, redirect
 from flask_login import login_user, logout_user, login_required
+from werkzeug.security import check_password_hash, generate_password_hash
 from app import forms
 from flask_sqlalchemy import SQLAlchemy
 from app import db
@@ -20,20 +21,21 @@ def login():
         
         user = User.query.filter_by(username=username).first()
         
-        try: 
-            if password == user.password: 
+        if user and check_password_hash(user.password, password):
+            try: 
                 login_user(user, form.remember.data)
 
                 flash(f'You succesfully entered into your account!')
 
                 return redirect(url_for('user.feed'))
             
-            else: 
-                flash(f'Incorrect password!')
+            except Exception as e: 
+                flash(f'Error while entering account!')
+                flah(e)
                 return render_template('login.html', form=form)
         
-        except: 
-            flash(f'Incorrect username!')
+        else:
+            flash('Login or password is not correct')
             return render_template('login.html', form=form)
     
     else: 
@@ -52,11 +54,11 @@ def register():
         password = request.form['password']
         confirm_password = request.form['confirm_password']
 
-        if password == confirm_password: 
+        if password == confirm_password:
             try:
+                hash_pwd = generate_password_hash(password)
                 user = User(firstname=firstname, lastname=lastname, 
-                            username=username, email=email, password=password)
-                
+                            username=username, email=email, password=hash_pwd)
                 db.session.add(user)
                 db.session.commit()
                 
@@ -66,11 +68,14 @@ def register():
             
             except Exception as e:
                 flash(f'Error while inserting data into DB!')
+                flash(e)
 
                 return render_template('register.html', form=form)
         
-        else: 
-            flash(f'Passwords do not match!')
+        #elif password != confirm_password:
+        else:
+            flash('Passwords do not match!')
+            return render_template('register.html', form=form)
     
     else: 
         return render_template('register.html', form=form)

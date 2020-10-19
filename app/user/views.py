@@ -51,17 +51,6 @@ def posts(post_id):
             
             comment = Comments(text=text, post_id=post_id, author_id=user.id)
             
-            """
-            # create a configured "Session" class
-            Session = sessionmaker(autoflush=False)
-
-            # create a Session
-            session = Session()
-
-            user.comments.append(comment)
-            post.comments.append(comment)
-            """
-            
             db.session.add(comment)
             db.session.commit()
 
