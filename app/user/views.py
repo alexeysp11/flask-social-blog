@@ -18,7 +18,11 @@ def profile(username):
     posts = Post.query.filter_by(author=user).all()
     num_posts = len(posts)
     
+    image_file = url_for('static', 
+                        filename='profile_pictures/' + user.image_file)
+    
     return render_template('profile.html', 
+                            image_file=image_file,
                             username=username, 
                             num_posts=num_posts,
                             posts=posts)
@@ -34,7 +38,7 @@ def feed():
         return render_template('feed.html', posts=Post.query.all())
 
 
-@user_blueprint.route("/posts/<post_id>", methods=['GET', 'POST'])
+@user_blueprint.route("/posts/post<post_id>", methods=['GET', 'POST'])
 @login_required
 def posts(post_id):
     form = forms.CommentsForPostForm()
@@ -48,24 +52,21 @@ def posts(post_id):
         try:
             username = current_user.username
             user = User.query.filter_by(username=username).first()
-            
             comment = Comments(text=text, post_id=post_id, author_id=user.id)
-            
             db.session.add(comment)
             db.session.commit()
 
             flash('Your comment has been published.')
-            
             return redirect(url_for('user.posts', post_id=post_id))
         
         except Exception as e: 
             flash(f'Error while importing into DB!')
             flash(f'{ e }')
-            
             return redirect(url_for('user.posts', post_id=post_id))
     
     else:
-        return render_template('posts.html', form=form, post=post, comments=comments)
+        return render_template('posts.html', form=form, post=post, 
+                                comments=comments)
 
 
 @user_blueprint.route("/new", methods=['GET', 'POST'])
@@ -81,7 +82,6 @@ def new():
         try:
             username = current_user.username
             user = User.query.filter_by(username=username).first()
-
             post = Post(post_address=post_address, title=title, text=text)
             user.posts.append(post)
             db.session.commit()
@@ -91,7 +91,6 @@ def new():
         except Exception as e: 
             flash(f'Error while importing into DB!')
             flash(f'{ e }')
-            
             return render_template('new.html', form=form)
     
     else: 

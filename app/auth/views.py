@@ -24,9 +24,7 @@ def login():
         if user and check_password_hash(user.password, password):
             try: 
                 login_user(user, form.remember.data)
-
                 flash(f'You succesfully entered into your account!')
-
                 return redirect(url_for('user.feed'))
             
             except Exception as e: 
@@ -63,16 +61,13 @@ def register():
                 db.session.commit()
                 
                 flash(f'Account succesfully created!')
-                
                 return redirect(url_for('user.feed'))
             
             except Exception as e:
                 flash(f'Error while inserting data into DB!')
                 flash(e)
-
                 return render_template('register.html', form=form)
         
-        #elif password != confirm_password:
         else:
             flash('Passwords do not match!')
             return render_template('register.html', form=form)

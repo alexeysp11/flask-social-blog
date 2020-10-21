@@ -2,7 +2,6 @@ from app import db, migrate, login_manager
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-#from werkzeug.security import generate_password_hash, check_password_hash
 
 
 @login_manager.user_loader
@@ -18,7 +17,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), unique=True, nullable=False)
-    
+    image_file = db.Column(db.String(20), nullable=False, default='default.png')
+
     posts = db.relationship('Post', 
                             backref='author', 
                             primaryjoin="User.id==Post.author_id")
@@ -37,8 +37,16 @@ class User(db.Model, UserMixin):
                                 backref=db.backref('followed', lazy='joined'),
                                 lazy='dynamic',
                                 cascade='all, delete-orphan')
+    
+    
+    following = db.relationship(
+        'User', lambda: user_following,
+        db.ForeignKey('user.id')
+        primaryjoin=lambda: User.id == user_following.c.user_id,
+        secondaryjoin=lambda: User.id == user_following.c.following_id,
+        backref='followers'
+    )
     """
-        
     def __init__(self, firstname='', lastname='', username='', email='', 
                  password=''): 
         self.firstname = firstname
@@ -76,12 +84,20 @@ class Comments(db.Model):
         return f"Comments('Post ID: {self.post_id}, Author ID: {self.author_id}, Date: {self.date}, Text: {self.text}')"
 
 """
+user_following = db.Table(
+    'user_following', Base.metadata,
+    db.Column('user_id', db.Integer, db.ForeignKey(User.id), primary_key=True),
+    db.Column('following_id', db.Integer, db.ForeignKey(User.id), primary_key=True)
+)
+
 class Follow(db.Model):
     follower_id = db.Column(db.Integer, db.ForeignKey('users.id'),
                             primary_key=True)
     followed_id = db.Column(db.Integer, db.ForeignKey('users.id'),
                             primary_key=True)
     #timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+Base.metadata.create_all()
 """
 
 db.create_all()
