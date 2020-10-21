@@ -37,8 +37,7 @@ class User(db.Model, UserMixin):
                                 backref=db.backref('followed', lazy='joined'),
                                 lazy='dynamic',
                                 cascade='all, delete-orphan')
-    
-    
+        
     following = db.relationship(
         'User', lambda: user_following,
         db.ForeignKey('user.id')
@@ -47,6 +46,7 @@ class User(db.Model, UserMixin):
         backref='followers'
     )
     """
+    
     def __init__(self, firstname='', lastname='', username='', email='', 
                  password=''): 
         self.firstname = firstname

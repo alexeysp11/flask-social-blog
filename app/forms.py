@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, EqualTo
 
@@ -38,6 +39,20 @@ class NewPostForm(FlaskForm):
     text = StringField('Text', validators=[DataRequired()])
     pusblish = SubmitField('Publish')
 
+
 class CommentsForPostForm(FlaskForm): 
     text = StringField('Comment', validators=[DataRequired()])
     pusblish = SubmitField('Publish')
+
+
+class UpdateAccountForm(FlaskForm):
+    firstname = StringField('First name', 
+                            validators=[DataRequired(), Length(min=2, max=20)])
+    lastname = StringField('Last name', 
+                            validators=[DataRequired(), Length(min=2, max=20)])
+    username = StringField('Username',
+                           validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email',
+                        validators=[DataRequired()])
+    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+    submit = SubmitField('Update')
