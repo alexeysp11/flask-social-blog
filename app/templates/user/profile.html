@@ -5,15 +5,15 @@
 {% block content %}
 	<form>
 		<fieldset class="user-info-fieldset">
-			<div class="user-info">
-				<img src="{{ image_file }}" width="100" height="100">
+			<img src="{{ image_file }}" width="100" height="100">
+			<fieldset class="user-info">
 				<p>Username: {{ username }}</p>
 				<p>Firstname: {{ firstname }}</p>
 				<p>Lastname: {{ lastname }}</p>
 				<p>Email: {{ email }}</p>
 				<p>Posts: {{ num_posts }}</p>
-			</div>
-			<div class="user-info-btns">
+			</fieldset>
+			<fieldset class="user-info-btns">
 				<li>
 					<a href="{{ url_for('user.update_profile', username=username) }}">
 						Update profile
@@ -21,16 +21,17 @@
 				</li>
 				<li><a href="#">Follow</a></li>
 				<li><a href="#">Message</a></li>
-			</div>
+				<li><a href="{{ url_for('user.new') }}">New post</a></li>
+			</fieldset>
 		</fieldset>
-		<fieldset class="posts-fieldset">
-			<h2>Posts</h2>
+		<fieldset class="feed-fieldset">
 			{% for post in posts %}
-				<p>
+			<fieldset class="profile-posts-fieldset">
+				<h2>
 					<a href="{{ url_for('user.posts', post_id=post.id) }}">
 						{{ post.title }}
 					</a>
-				</p>
+				</h2>
 				<p>
 					By 
 					<a href="{{ url_for('user.profile', username=post.author.username) }}">
@@ -38,7 +39,10 @@
 					</a>
 					on {{ post.date.strftime('%d, %b %Y') }}
 				</p>
+				<hr>
 				<p>{{ post.text }}</p>
+			</fieldset>
+				
 			{% endfor %}
 		</fieldset>
 	</form>

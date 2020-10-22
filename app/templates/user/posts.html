@@ -19,6 +19,7 @@
                     </a> 
                     on {{ post.date.strftime('%d, %b %Y') }}
                 </p>
+                <hr>
                 <p>{{ post.text }}</p>
             </fieldset>
             <fieldset class="comments-fieldset">
@@ -30,14 +31,15 @@
                         </a>
                         on {{ comment.date.strftime('%d, %b %Y') }}
                     </p>
+                    <hr>
                     <p>{{ comment.text }}</p>
                 {% endfor %}
             </fieldset>
-            <fieldset>
+            <fieldset class="comments-fieldset">
                 <div>
                     {{ form.text.label(class="form-control-label") }}
                     <br>
-                    {{ form.text(class="form-control form-control=lg") }}
+                    {{ form.text(class="comments-text") }}
                 </div>
                 <div>
                     {{ form.pusblish(class="submit-btn") }}

@@ -1,12 +1,12 @@
 body {
-    background: #fafafa;
+    background: #ffffff;
     color: #333333;
     margin-top: 5rem;
 }
 
 .home-about-fieldset {
     position: absolute;
-    top: 100pt;
+    top: 50pt;
     left: 10pt;
     height: 250pt;
     width: 250pt;
@@ -14,7 +14,7 @@ body {
 
 .home-register-login-fieldset {
     position: absolute;
-    top: 100pt;
+    top: 50pt;
     left: 350pt;
     height: 250pt;
     width: 250pt;
@@ -37,7 +37,24 @@ body {
 }
 
 .posts-fieldset {
-    width: 500pt;
+    width: 97%;
+}
+
+.profile-posts-fieldset {
+    width: 97%;
+}
+
+.comments-fieldset {
+    margin-left: 5%;
+    width: 92%;
+}
+
+.comments-text {
+    margin: 2pt;
+    min-height: 20pt;
+    max-height: 60pt;
+    min-width: 98%; 
+    max-width: 98%; 
 }
 
 .firstname-div {
