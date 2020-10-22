@@ -4,7 +4,7 @@ from flask import current_app, Blueprint, render_template, url_for, request, fla
 from flask_login import login_required, current_user
 from app import forms, db
 from app.models import User, Post, Comments
-from sqlalchemy import func
+from sqlalchemy import func, update
 from sqlalchemy.orm import session, sessionmaker
 
 user_blueprint = Blueprint('user', __name__, template_folder='../templates/user')
@@ -37,6 +37,9 @@ def profile(username):
     return render_template('profile.html', 
                             image_file=image_file,
                             username=username, 
+                            firstname=user.firstname, 
+                            lastname=user.lastname,
+                            email=user.email,
                             num_posts=num_posts,
                             posts=posts)
 
@@ -47,19 +50,30 @@ def update_profile(username):
     form = forms.UpdateAccountForm()
     
     if form.validate_on_submit():
-        if form.picture.data:
-            picture_file = save_picture(form.picture.data)
-            current_user.image_file = picture_file
+        try:
+            if form.picture.data:
+                picture_file = save_picture(form.picture.data)
+                current_user.image_file = picture_file
+            
+            current_user.firstname = form.firstname.data
+            current_user.lastname = form.lastname.data
+            current_user.username = form.username.data
+            current_user.email = form.email.data
+            db.session.commit()
+            
+            flash('Your account has been updated!')
+            
+            return redirect(url_for('user.profile', 
+                                    username=username))
         
-        current_user.firstname = form.firstname.data
-        current_user.lastname = form.lastname.data
-        current_user.username = form.username.data
-        current_user.email = form.email.data
-        db.session.commit()
-        
-        flash('Your account has been updated!', 'success')
-        
-        return redirect(url_for('user.profile', username=username))
+        except Exception as e:
+            flash(f'Error while importing into DB!')
+            flash(e)
+            db.session.rollback()
+            
+            return render_template('update_profile.html', 
+                                form=form,
+                                username=username)
     
     elif request.method == 'GET':
         form.firstname.data = current_user.firstname

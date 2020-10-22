@@ -7,7 +7,10 @@
 		<fieldset class="user-info-fieldset">
 			<div class="user-info">
 				<img src="{{ image_file }}" width="100" height="100">
-				<p>{{ username }}</p>
+				<p>Username: {{ username }}</p>
+				<p>Firstname: {{ firstname }}</p>
+				<p>Lastname: {{ lastname }}</p>
+				<p>Email: {{ email }}</p>
 				<p>Posts: {{ num_posts }}</p>
 			</div>
 			<div class="user-info-btns">
@@ -18,13 +21,6 @@
 				</li>
 				<li><a href="#">Follow</a></li>
 				<li><a href="#">Message</a></li>
-				<!--
-				<button class="submit-btn">Update profile</button>
-				<br>
-				<button class="submit-btn">Follow</button>
-				<br>
-				<button class="submit-btn">Message</button>
-				-->
 			</div>
 		</fieldset>
 		<fieldset class="posts-fieldset">

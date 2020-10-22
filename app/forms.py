@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, TextAreaField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, EqualTo
 
 # You can also install 'email_validator' for email validation support!
@@ -36,12 +36,12 @@ class ForgotPasswordForm(FlaskForm):
 class NewPostForm(FlaskForm):
     post_address = StringField('Post Address', validators=[DataRequired()])
     title = StringField('Name of Post', validators=[DataRequired()])
-    text = StringField('Text', validators=[DataRequired()])
+    text = TextAreaField('Text', validators=[DataRequired()])
     pusblish = SubmitField('Publish')
 
 
 class CommentsForPostForm(FlaskForm): 
-    text = StringField('Comment', validators=[DataRequired()])
+    text = TextAreaField('Comment', validators=[DataRequired()])
     pusblish = SubmitField('Publish')
 
 
@@ -55,4 +55,5 @@ class UpdateAccountForm(FlaskForm):
     email = StringField('Email',
                         validators=[DataRequired()])
     picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+    about = TextAreaField('About me', validators=[DataRequired()])
     submit = SubmitField('Update')

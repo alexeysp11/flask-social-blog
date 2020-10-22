@@ -4,15 +4,16 @@ nav {
     left: 0pt;
     margin: 0;
     display: flex;
-    box-sizing: border-box;
-    justify-content: space-around; 
     align-items: center;
-    min-height: 8vh;
+    min-height: 10vh;
     max-height: 10vh;
+    width: 100%;
     background-color: purple;
 }
 
 .logo {
+    position: relative;
+    margin: 0pt;
     color: rgb(255, 255, 255);
     text-transform: uppercase;
     letter-spacing: 5px;
@@ -21,6 +22,7 @@ nav {
 }
 
 .nav-links {
+    margin-left: 30%;
     display: flex;
     width: auto;
 }
@@ -33,85 +35,14 @@ nav {
 }
 
 .nav-links li {
+    margin: 10px;
     list-style: none;
 }
 
 .burger div {
     width: 25px;
     height: 3px;
-    margin: 5px;
+    margin-left: 25px;
+    margin-top: 5px;
     background-color: white;
-}
-
-.site-header {
-    height: 40;
-    list-style-type: none;
-    margin-left: 10pt;
-    padding: 0;
-    overflow: auto;
-    background-color: red;
-}
-
-.container {
-    list-style-type: none;
-    margin-left: 10pt;
-    padding: 0;
-    overflow: auto;
-    background-color: red;
-}
-
-/* Style the links inside the navigation bar */
-.container a {
-    float: left;
-    color: brown;
-    text-align: center;
-    text-decoration: none;
-    font-size: 17px;
-  }
-  
-  /* Change the color of links on hover */
-.container a:hover {
-    background-color: lightcyan;
-    color: black;
-  }
-  
-  /* Add a color to the active/current link */
-.container a.active {
-    background-color: #4CAF50;
-    color: black;
-  }
-
-.navbar-brand {
-    position: absolute;
-    top: 10pt;
-    left: 10pt;
-    width: auto;
-}
-
-.navbar-home-about, .navbar-home {
-    position: absolute;
-    top: 10pt;
-    left: 150pt;
-    width: auto;
-}
-
-.navbar-about{
-    position: absolute;
-    top: 10pt;
-    left: 175pt;
-    width: auto;
-}
-
-.navbar-nav, .navbar-login {
-    position: absolute;
-    top: 10pt;
-    left: 500pt;
-    width: auto;
-}
-
-.navbar-register {
-    position: absolute;
-    top: 10pt;
-    left: 525pt;
-    width: auto;
 }

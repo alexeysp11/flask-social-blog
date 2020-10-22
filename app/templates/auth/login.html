@@ -18,6 +18,9 @@
                 {{ form.password(class="form-control form-control=lg") }}
             </div>
             <div>
+                {{ form.remember.label() }}
+                {{ form.remember() }}
+                <br>
                 {{ form.submit(class="submit-btn") }}
             </div>
             <div class="border-top pt-3">
