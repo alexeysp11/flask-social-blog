@@ -22,19 +22,22 @@
                 <hr>
                 <p>{{ post.text }}</p>
             </fieldset>
-            <fieldset class="comments-fieldset">
+            <div class="comments-div">
                 {% for comment in comments %}
-                    <p>
-                        By 
-                        <a href="{{ url_for('user.profile', username=post.author.username) }}">
-                            {{ comment.author.username }}
-                        </a>
-                        on {{ comment.date.strftime('%d, %b %Y') }}
-                    </p>
-                    <hr>
-                    <p>{{ comment.text }}</p>
+                    <fieldset class="comments-fieldset">
+                        <p>
+                            By 
+                            <a href="{{ url_for('user.profile', username=post.author.username) }}">
+                                {{ comment.author.username }}
+                            </a>
+                            on {{ comment.date.strftime('%d, %b %Y') }}
+                        </p>
+                        <hr>
+                        <p>{{ comment.text }}</p>
+                    </fieldset>
                 {% endfor %}
-            </fieldset>
+            </div>
+            
             <fieldset class="comments-fieldset">
                 <div>
                     {{ form.text.label(class="form-control-label") }}

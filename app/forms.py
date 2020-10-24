@@ -34,7 +34,6 @@ class ForgotPasswordForm(FlaskForm):
 
 
 class NewPostForm(FlaskForm):
-    post_address = StringField('Post Address', validators=[DataRequired()])
     title = StringField('Name of Post', validators=[DataRequired()])
     text = TextAreaField('Text', validators=[DataRequired()])
     pusblish = SubmitField('Publish')

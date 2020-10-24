@@ -26,26 +26,6 @@ class User(db.Model, UserMixin):
                             backref='author', 
                             primaryjoin="User.id==Comments.author_id")
     
-    """
-    followed = db.relationship('Follow', 
-                                foreign_keys=[Follow.follower_id],
-                                backref=db.backref('follower', lazy='joined'), 
-                                lazy='dynamic',
-                                cascade='all, delete-orphan')
-    followers = db.relationship('Follow',
-                                foreign_keys=[Follow.followed_id],
-                                backref=db.backref('followed', lazy='joined'),
-                                lazy='dynamic',
-                                cascade='all, delete-orphan')
-        
-    following = db.relationship(
-        'User', lambda: user_following,
-        db.ForeignKey('user.id')
-        primaryjoin=lambda: User.id == user_following.c.user_id,
-        secondaryjoin=lambda: User.id == user_following.c.following_id,
-        backref='followers'
-    )
-    """
     
     def __init__(self, firstname='', lastname='', username='', email='', 
                  password=''): 
@@ -58,10 +38,27 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('ID: {self.id}, Firstname: {self.firstname}, Lastname: {self.lastname}, Username: {self.username}')"
 
+    def generate_reset_token(self, expiration=3600):
+        s = Serializer(current_app.config['SECRET_KEY'], expiration)
+        return s.dumps({'reset': self.id}).decode('utf-8')
+
+    @staticmethod
+    def reset_password(token, new_password):
+        s = Serializer(current_app.config['SECRET_KEY'])
+        try:
+            data = s.loads(token.encode('utf-8'))
+        except:
+            return False
+        user = User.query.get(data.get('reset'))
+        if user is None:
+            return False
+        user.password = new_password
+        db.session.add(user)
+        return True
+
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    post_address = db.Column(db.String(30), nullable=False)
     title = db.Column(db.String(100), nullable=False)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     text = db.Column(db.Text, nullable=False)
@@ -83,21 +80,5 @@ class Comments(db.Model):
     def __repr__(self):
         return f"Comments('Post ID: {self.post_id}, Author ID: {self.author_id}, Date: {self.date}, Text: {self.text}')"
 
-"""
-user_following = db.Table(
-    'user_following', Base.metadata,
-    db.Column('user_id', db.Integer, db.ForeignKey(User.id), primary_key=True),
-    db.Column('following_id', db.Integer, db.ForeignKey(User.id), primary_key=True)
-)
-
-class Follow(db.Model):
-    follower_id = db.Column(db.Integer, db.ForeignKey('users.id'),
-                            primary_key=True)
-    followed_id = db.Column(db.Integer, db.ForeignKey('users.id'),
-                            primary_key=True)
-    #timestamp = db.Column(db.DateTime, default=datetime.utcnow)
-
-Base.metadata.create_all()
-"""
 
 db.create_all()

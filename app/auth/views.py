@@ -1,7 +1,7 @@
 import sys
 sys.path.append("..")
 from flask import current_app, Blueprint, render_template, url_for, request, flash, redirect
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from app import forms
 from flask_sqlalchemy import SQLAlchemy
@@ -77,24 +77,64 @@ def register():
 
 
 @auth_blueprint.route("/forgot_password/<int:page>", methods=['GET', 'POST'])
-def forgot_password(page):
+def forgot_password(page=0, username=None):
+    import random
+    import string
+    
     form = forms.ForgotPasswordForm()
     
     if request.method == "POST": 
+        if page == 0: 
+            username = request.form['username']
+            
+            try: 
+                user = User.query.filter_by(username=username).first()
+                
+                if type(user34) != NoneType: 
+                    return redirect(url_for('auth.forgot_password', 
+                                            page=1,
+                                            username=username))
+                
+                else: 
+                    flash('Oops, something went wrong!')
+                    flash(e)
+                    return redirect(url_for('auth.forgot_password', page=0))
+            
+            except Exception as e: 
+                flash('Oops, something went wrong!')
+                flash(e)
+                return redirect(url_for('auth.forgot_password', page=0))
+        
         if page == 1:
-            code = request.form['code']
+            generated_code = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(4))
+            print(generated_code)
+            entered_code = request.form['code']
+            
+            if generated_code == entered_code: 
+                return redirect(url_for('auth.forgot_password', 
+                                        page=2,
+                                        username=username))
+            
+            else: 
+                flash('Incorrect code!')
+                return redirect(url_for('auth.forgot_password', 
+                                            page=1,
+                                            username=username))
         
         elif page == 2: 
             new_password = request.form['new_password']
-            return redirect(url_for('user.feed'))
-        
-        else:
-            username = request.form['username']
-        
-        page += 1
-        
-        return redirect(url_for('auth.forgot_password', page=page))
-        
+            hash_pwd = generate_password_hash(new_password)
+
+            try:
+                current_user.password = hash_pwd
+                db.session.commit()
+                return redirect(url_for('user.feed'))
+            
+            except Exception as e:
+                return redirect(url_for('auth.forgot_password', 
+                                        page=2,
+                                        username=username))
+                    
     else: 
         return render_template('forgot_password.html', form=form, page=page)
 

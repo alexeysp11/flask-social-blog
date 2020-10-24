@@ -1,53 +1,52 @@
 .new-post-fieldset {
+    position: relative;
+    top: 10%;
+    left: 0%;
     height: 250pt;
-    width: 300pt;
+    min-width: 350pt;
+    max-width: 350pt;
 }
 
 .post-author-div {
-    position: absolute;
-    top: 100pt;
-    left: 20pt;
-    height: 10pt;
-    width: 150pt;
-}
-
-.post-address-div {
-    position: absolute;
-    top: 100pt;
-    left: 175pt;
+    position: relative;
+    top: 0%;
+    left: 0%;
     height: 10pt;
     width: 150pt;
 }
 
 .post-name-div {
-    position: absolute;
-    top: 125pt;
-    left: 20pt;
-    height: 10pt;
-    width: 150pt;
+    position: relative;
+    top: 2%;
+    left: 0%;
 }
 
-.post-name-div {
-    position: absolute;
-    top: 125pt;
-    left: 20pt;
+.post-name {
     height: 10pt;
-    width: 150pt;
+    min-width: 92%;
+    max-width: 92%;
 }
 
 .post-text-div {
-    position: absolute;
-    top: 160pt;
-    left: 20pt;
-    height: 10pt;
-    width: 250pt;
+    position: relative;
+    top: 2%;
+    left: 0%;
+}
+
+.post-text {
+    min-height: 100pt;
+    max-height: 100pt;
+    min-width: 92%;
+    max-width: 92%;
+}
+
+.post-publish-btn-div {
+    position: relative;
+    top: 5%;
+    left: 0%;
 }
 
 .post-publish-btn {
-    position: absolute;
-    top: 200pt;
-    left: 20pt;
     height: 20pt;
     width: 135pt;
-    margin-top: 10pt;
 }

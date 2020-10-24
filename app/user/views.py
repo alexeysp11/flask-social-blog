@@ -24,7 +24,7 @@ def save_picture(form_picture):
     return picture_fn
 
 
-@user_blueprint.route("/profile/<username>", methods=['GET', 'POST'])
+@user_blueprint.route("/<username>", methods=['GET', 'POST'])
 @login_required
 def profile(username):
     user = User.query.filter_by(username=username).first()
@@ -60,17 +60,13 @@ def update_profile(username):
             current_user.username = form.username.data
             current_user.email = form.email.data
             db.session.commit()
-            
             flash('Your account has been updated!')
-            
             return redirect(url_for('user.profile', 
                                     username=username))
         
         except Exception as e:
-            flash(f'Error while importing into DB!')
-            flash(e)
+            flash(f'Error while importing into DB!\n{ e }')
             db.session.rollback()
-            
             return render_template('update_profile.html', 
                                 form=form,
                                 username=username)
@@ -80,7 +76,6 @@ def update_profile(username):
         form.lastname.data = current_user.lastname
         form.username.data = current_user.username
         form.email.data = current_user.email
-        
         return render_template('update_profile.html', 
                                 form=form,
                                 username=username)
@@ -96,11 +91,10 @@ def feed():
         return render_template('feed.html', posts=Post.query.all())
 
 
-@user_blueprint.route("/posts/post<post_id>", methods=['GET', 'POST'])
+@user_blueprint.route("/post<post_id>", methods=['GET', 'POST'])
 @login_required
 def posts(post_id):
     form = forms.CommentsForPostForm()
-    
     post = Post.query.filter_by(id=post_id).first()
     comments = Comments.query.filter_by(post_id=post.id).all()
     
@@ -113,13 +107,11 @@ def posts(post_id):
             comment = Comments(text=text, post_id=post_id, author_id=user.id)
             db.session.add(comment)
             db.session.commit()
-
             flash('Your comment has been published.')
             return redirect(url_for('user.posts', post_id=post_id))
         
         except Exception as e: 
-            flash(f'Error while importing into DB!')
-            flash(f'{ e }')
+            flash(f'Error while importing into DB!\n{ e }')
             return redirect(url_for('user.posts', post_id=post_id))
     
     else:
@@ -133,26 +125,62 @@ def new():
     form = forms.NewPostForm()
     
     if form.validate_on_submit(): 
-        post_address = request.form['post_address']
         title = request.form['title']
         text = request.form['text']
         
         try:
             username = current_user.username
             user = User.query.filter_by(username=username).first()
-            post = Post(post_address=post_address, title=title, text=text)
+            post = Post(title=title, text=text)
             user.posts.append(post)
             db.session.commit()
-            
             return redirect(url_for('user.feed'))
         
         except Exception as e: 
-            flash(f'Error while importing into DB!')
-            flash(f'{ e }')
+            flash(f'Error while importing into DB!\n{ e }')
             return render_template('new.html', form=form)
     
     else: 
         return render_template('new.html', form=form)
+
+
+@user_blueprint.route("/post<int:post_id>/update", methods=['GET', 'POST'])
+@login_required
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    
+    if post.author != current_user:
+        abort(403)
+    
+    form = CommentsForPostForm()
+    
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.text = form.text.data
+        db.session.commit()
+        flash('Your post has been updated!', 'success')
+        return redirect(url_for('post', post_id=post.id))
+    
+    elif request.method == 'GET':
+        form.title.data = post.title
+        form.content.data = post.content
+    
+    return render_template('create_post.html', title='Update Post',
+                           form=form, legend='Update Post')
+
+
+@user_blueprint.route("/post<int:post_id>/delete", methods=['POST'])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    
+    if post.author != current_user:
+        abort(403)
+    
+    db.session.delete(post)
+    db.session.commit()
+    flash('Your post has been deleted!', 'success')
+    return redirect(url_for('user.feed'))
 
 
 @user_blueprint.route("/followers", methods=['GET', 'POST'])

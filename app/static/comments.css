@@ -1,0 +1,13 @@
+.comments-fieldset {
+    margin-left: 5%;
+    min-width: 92%;
+    max-width: 92%;
+}
+
+.comments-text {
+    margin: 2pt;
+    min-height: 50pt;
+    max-height: 50pt;
+    min-width: 98%; 
+    max-width: 98%; 
+}

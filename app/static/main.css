@@ -4,6 +4,10 @@ body {
     margin-top: 5rem;
 }
 
+h2 a {
+    color: #333333;
+}
+
 .home-about-fieldset {
     position: absolute;
     top: 50pt;
@@ -42,19 +46,6 @@ body {
 
 .profile-posts-fieldset {
     width: 97%;
-}
-
-.comments-fieldset {
-    margin-left: 5%;
-    width: 92%;
-}
-
-.comments-text {
-    margin: 2pt;
-    min-height: 20pt;
-    max-height: 60pt;
-    min-width: 98%; 
-    max-width: 98%; 
 }
 
 .firstname-div {

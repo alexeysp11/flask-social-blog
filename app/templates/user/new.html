@@ -11,22 +11,17 @@
                 <div class="post-author-div">
                     <p>Author: {{ current_user.username }}</p>
                 </div>
-                <div class="post-address-div">
-                    {{ form.post_address.label(class="form-control-label") }}
-                    <br>
-                    {{ form.post_address(id="post_address") }}
-                </div>
                 <div class="post-name-div">
                     {{ form.title.label(class="form-control-label") }}
                     <br>
-                    {{ form.title(id="title") }}
+                    {{ form.title(id="title", class="post-name") }}
                 </div>
                 <div class="post-text-div">
                     {{ form.text.label(class="form-control-label") }}
                     <br>
-                    {{ form.text(id="text") }}
+                    {{ form.text(id="text", class="post-text") }}
                 </div>
-                <div>
+                <div class='post-publish-btn-div'>
                     {{ form.pusblish(class="post-publish-btn") }}
                 </div>
             </fieldset>

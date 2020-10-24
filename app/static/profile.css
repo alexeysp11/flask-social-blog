@@ -1,0 +1,12 @@
+.user-main-info, .user-info-btns {
+    min-width: 100pt;
+    max-width: 100pt;
+}
+
+.user-info {
+    position: absolute;
+    top: 67pt;
+    left: 150pt;
+    min-width: 175pt;
+    max-width: 500pt;
+}
