@@ -1,6 +1,6 @@
 import sys
 sys.path.append("..")
-from flask import current_app, Blueprint, render_template, url_for, request, flash, redirect
+from flask import current_app, Blueprint, render_template, url_for, request, flash, redirect, abort
 from flask_login import login_required, current_user
 from app import forms, db
 from app.models import User, Post, Comments
@@ -138,10 +138,10 @@ def new():
         
         except Exception as e: 
             flash(f'Error while importing into DB!\n{ e }')
-            return render_template('new.html', form=form)
+            return render_template('new.html', title='Update Post', form=form)
     
     else: 
-        return render_template('new.html', form=form)
+        return render_template('new.html', title='Update Post', form=form)
 
 
 @user_blueprint.route("/post<int:post_id>/update", methods=['GET', 'POST'])
@@ -149,38 +149,46 @@ def new():
 def update_post(post_id):
     post = Post.query.get_or_404(post_id)
     
-    if post.author != current_user:
+    if post.author.username != current_user.username:
         abort(403)
     
-    form = CommentsForPostForm()
+    form = forms.NewPostForm()
     
     if form.validate_on_submit():
         post.title = form.title.data
         post.text = form.text.data
         db.session.commit()
         flash('Your post has been updated!', 'success')
-        return redirect(url_for('post', post_id=post.id))
+        return redirect(url_for('user.posts', post_id=post.id))
     
     elif request.method == 'GET':
         form.title.data = post.title
-        form.content.data = post.content
+        form.text.data = post.text
     
-    return render_template('create_post.html', title='Update Post',
-                           form=form, legend='Update Post')
+    return render_template('new.html', title='Update Post', form=form)
 
 
-@user_blueprint.route("/post<int:post_id>/delete", methods=['POST'])
+@user_blueprint.route("/post<int:post_id>/delete", methods=['GET', 'POST'])
 @login_required
 def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
+    comments = Comments.query.filter_by(post_id=post_id).all()
     
-    if post.author != current_user:
+    if post.author.username != current_user.username:
         abort(403)
     
-    db.session.delete(post)
-    db.session.commit()
-    flash('Your post has been deleted!', 'success')
-    return redirect(url_for('user.feed'))
+    try:
+        db.session.delete(post)
+        for comment in comments: 
+            db.session.delete(comment)
+        db.session.commit()
+        flash('Your post has been deleted!', 'success')
+        return redirect(url_for('user.feed'))
+    
+    except Exception as e:
+        flash('Error while deleting from DB!', e)
+        return redirect(url_for('user.posts'))
+    
 
 
 @user_blueprint.route("/followers", methods=['GET', 'POST'])
