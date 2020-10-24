@@ -25,11 +25,11 @@ def login():
             try: 
                 login_user(user, form.remember.data)
                 flash(f'You succesfully entered into your account!')
-                return redirect(url_for('user.feed'))
+                return redirect(url_for('posts.feed'))
             
             except Exception as e: 
                 flash(f'Error while entering account!')
-                flah(e)
+                flash(e)
                 return render_template('login.html', form=form)
         
         else:
@@ -59,9 +59,8 @@ def register():
                             username=username, email=email, password=hash_pwd)
                 db.session.add(user)
                 db.session.commit()
-                
                 flash(f'Account succesfully created!')
-                return redirect(url_for('user.feed'))
+                return redirect(url_for('posts.feed'))
             
             except Exception as e:
                 flash(f'Error while inserting data into DB!')
@@ -90,7 +89,7 @@ def forgot_password(page=0, username=None):
             try: 
                 user = User.query.filter_by(username=username).first()
                 
-                if type(user34) != NoneType: 
+                if type(user) != NoneType: 
                     return redirect(url_for('auth.forgot_password', 
                                             page=1,
                                             username=username))
@@ -144,5 +143,4 @@ def forgot_password(page=0, username=None):
 def logout():
     logout_user()
     flash('You have been logged out.')
-    
-    return render_template('home.html')
+    return render_template('main/home.html')

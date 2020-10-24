@@ -5,17 +5,19 @@ from app import forms, db
 from app.models import User, Post
 from app.auth.views import auth_blueprint
 from app.user.views import user_blueprint
+from app.posts.views import posts_blueprint
 
 
 app.register_blueprint(auth_blueprint)
 app.register_blueprint(user_blueprint)
+app.register_blueprint(posts_blueprint)
 
 
 @app.route("/")
 @app.route("/home")
 def home():
     if current_user.is_authenticated: 
-        return redirect(url_for('user.feed'))
+        return redirect(url_for('posts.feed'))
     
     else:
         return render_template('home.html')

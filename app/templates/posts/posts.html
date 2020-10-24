@@ -11,12 +11,12 @@
             <fieldset class="post-fieldset">
                 {% if post.author.username == current_user.username %}
                     <div class="update-post-div">
-                        <a href="{{ url_for('user.update_post', post_id=post.id) }}">
+                        <a href="{{ url_for('posts.update_post', post_id=post.id) }}">
                             Update post
                         </a> 
                     </div>
                     <div class="delete-post-div">
-                        <a href="{{ url_for('user.delete_post', post_id=post.id) }}">
+                        <a href="{{ url_for('posts.delete_post', post_id=post.id) }}">
                             Delete post
                         </a> 
                     </div>

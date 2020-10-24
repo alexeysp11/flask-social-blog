@@ -21,7 +21,7 @@
 							Update profile
 						</a>
 					</li>
-					<li><a href="{{ url_for('user.new') }}">New post</a></li>
+					<li><a href="{{ url_for('posts.new') }}">New post</a></li>
 				{% endif %}
 			</fieldset>
 			<fieldset class="user-info">
@@ -46,7 +46,7 @@
 				{% for post in posts %}
 					<fieldset class="profile-posts-fieldset">
 						<h2>
-							<a href="{{ url_for('user.posts', post_id=post.id) }}">
+							<a href="{{ url_for('posts.posts', post_id=post.id) }}">
 								{{ post.title }}
 							</a>
 						</h2>
