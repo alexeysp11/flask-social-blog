@@ -2,7 +2,7 @@ import sys
 sys.path.append("..")
 from flask import current_app, Blueprint, render_template, url_for, request, flash, redirect
 from flask_login import login_user, logout_user, login_required, current_user
-from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.security import check_password_hash
 from app import forms
 from flask_sqlalchemy import SQLAlchemy
 from app import db
@@ -54,9 +54,8 @@ def register():
 
         if password == confirm_password:
             try:
-                hash_pwd = generate_password_hash(password)
                 user = User(firstname=firstname, lastname=lastname, 
-                            username=username, email=email, password=hash_pwd)
+                            username=username, email=email, password=password)
                 db.session.add(user)
                 db.session.commit()
                 flash(f'Account succesfully created!')

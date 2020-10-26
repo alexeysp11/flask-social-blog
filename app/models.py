@@ -1,6 +1,7 @@
 from app import db, migrate, login_manager
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash
 from datetime import datetime
 
 
@@ -33,7 +34,7 @@ class User(db.Model, UserMixin):
         self.lastname = lastname
         self.username = username
         self.email = email
-        self.password = password
+        self.password = generate_password_hash(password)
     
     def __repr__(self):
         return f"User('ID: {self.id}, Firstname: {self.firstname}, Lastname: {self.lastname}, Username: {self.username}')"

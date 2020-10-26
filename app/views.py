@@ -20,14 +20,14 @@ def home():
         return redirect(url_for('posts.feed'))
     
     else:
-        return render_template('home.html')
+        return render_template('main/home.html')
 
 
 @app.route("/about")
 def about():
-    return render_template('about.html')
+    return render_template('main/about.html')
 
 
 @app.errorhandler(404)
 def error404(e):
-    return render_template('error404.html')
+    return render_template('main/error404.html')
