@@ -33,6 +33,7 @@ class BaseTestCase(TestCase):
         db.session.add(user)
         user.posts.append(post)
         db.session.commit()
+        return user, post
 
     def tearDown(self):
         user = User.query.filter_by(username='admin').first()
@@ -52,9 +53,53 @@ class FlaskTestCase(BaseTestCase):
             response = self.client.post(
                 '/login',
                 data=dict(username="admin", password="admin"),
-                follow_redirects=False
+                follow_redirects=True
             )
             assert response.status == '200 OK'
+    
+    # Ensure that login page redirects to the feed page if username is correct
+    def test_login_redirect_if_username_is_correct(self):
+        with self.app.test_client() as client:
+            response = self.client.post(
+                '/login',
+                data=dict(username="admin", password="admin"),
+                follow_redirects=True
+            )
+            # Feed page is the page for authenticated users, 
+            # and its url is '/', '/home' and '/feed'
+            assert request.path == '/'
+    
+    # Ensure that there's a user named admin in db 
+    def test_login_correct_user_in_db(self):
+        with self.app.test_client() as client:
+            response = self.client.post(
+                '/login',
+                data=dict(username="admin", password="admin"),
+                follow_redirects=True
+            )
+            user = User.query.filter_by(username="admin").first()
+            assert "admin" == user.username
+    
+    # Ensure that there's no user named wrong in db 
+    def test_login_incorrect_user_in_db(self):
+        with self.app.test_client() as client:
+            response = self.client.post(
+                '/login',
+                data=dict(username="wrong", password="wrong"),
+                follow_redirects=True
+            )
+            user = User.query.filter_by(username="wrong").first()
+            assert user is None
+    
+    # Ensure that the page for new post redirects to the feed
+    def test_new_post_redirect_to_feed(self): 
+        with self.app.test_client() as client:
+            response = self.client.post(
+                '/new',
+                data=dict(title="test", text="test"),
+                follow_redirects=True
+            )
+            assert request.path == '/'
 
 
 if __name__ == '__main__':
