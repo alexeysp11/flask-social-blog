@@ -1,0 +1,11 @@
+.registration-form {
+    text-align: left;
+}
+
+.register-fieldset, .login-fieldset {
+    width: 250pt;
+}
+
+.forgot-password-fieldset {
+    width: 250pt;
+}

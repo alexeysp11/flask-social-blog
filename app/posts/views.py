@@ -14,7 +14,7 @@ posts_blueprint = Blueprint('posts', __name__, template_folder='../templates/pos
 @login_required
 def feed():
     if request.method == "POST": 
-        return redirect(url_for('user.new'))
+        return redirect(url_for('posts.new'))
     
     else:
         return render_template('feed.html', posts=Post.query.all())

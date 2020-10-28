@@ -1,0 +1,15 @@
+.feed-header-fieldset {
+    width: 97%;
+    height: max-content;
+}
+
+.feed-fieldset {
+    width: 97%;
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1em;
+}
+
+.posts-fieldset, .profile-posts-fieldset {
+    width: 90%;
+}

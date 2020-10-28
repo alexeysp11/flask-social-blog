@@ -4,6 +4,11 @@ body {
     margin-top: 5rem;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    color: #444444;
+    text-align: center;
+}
+
 h2 a {
     color: #333333;
 }
@@ -24,28 +29,21 @@ h2 a {
     width: 250pt;
 }
 
-.registration-form {
-    text-align: left;
-}
-
-.register-fieldset, .login-fieldset {
-    width: 250pt;
-}
-
-.forgot-password-fieldset {
-    width: 250pt;
-}
-
-.feed-header-fieldset {
-    height: max-content;
-}
-
-.posts-fieldset {
+.about-wrapper {
     width: 97%;
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1em;
+    grid-auto-rows: minmax(10px, auto);
 }
 
-.profile-posts-fieldset {
-    width: 97%;
+.about-wrapper div {
+    background: #eeeeee;
+    padding: 1em;
+}
+
+.about-wrapper div:nth-child(odd) {
+    background: #dddddd;
 }
 
 .firstname-div {
