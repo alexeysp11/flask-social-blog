@@ -2,10 +2,15 @@
     text-align: left;
 }
 
-.register-fieldset, .login-fieldset {
-    width: 250pt;
+.register-fieldset, .login-fieldset, .forgot-password-fieldset {
+    position: absolute;
+    top: 75pt;
+    left: 15%;
+    width: 400pt;
+    text-align: center;
 }
 
-.forgot-password-fieldset {
-    width: 250pt;
+.auth-data-entry-area {
+    height: 1.5em;
+    width: 75%;
 }

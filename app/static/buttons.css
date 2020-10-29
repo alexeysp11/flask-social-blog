@@ -1,6 +1,7 @@
 .submit-btn, .publish-btn {
-    height: 20pt;
-    width: 135pt;
+    font-size: 11pt;
+    height: 2.25em;
+    width: 75%;
     margin-top: 10pt;
 }
 

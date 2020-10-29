@@ -13,6 +13,10 @@ h2 a {
     color: #333333;
 }
 
+p {
+    font-size: 13pt; 
+}
+
 .home-about-fieldset {
     position: absolute;
     top: 75pt;
@@ -49,12 +53,4 @@ h2 a {
 
 .about-wrapper div:nth-child(odd) {
     background: #dddddd;
-}
-
-.firstname-div {
-    text-align: left;
-}
-
-.lastname-div {
-    text-align: left;
 }

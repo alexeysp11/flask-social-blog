@@ -13,16 +13,30 @@ nav {
 
 .logo {
     position: relative;
-    margin: 0pt;
+    display: flex;
+    width: auto;
+    margin-top: 0pt;
     color: rgb(255, 255, 255);
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: 2px;
     font-size: 16px;
     background-color: red;
     min-width: 185pt;
     max-width: 185pt;
     min-height: 10vh;
     max-height: 10vh;
+}
+
+.logo a {
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-decoration: none;
+}
+
+.logo li {
+    margin: 10pt;
+    list-style: none;
 }
 
 .nav-links {
