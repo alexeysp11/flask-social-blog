@@ -15,7 +15,7 @@ h2 a {
 
 .home-about-fieldset {
     position: absolute;
-    top: 50pt;
+    top: 75pt;
     left: 10pt;
     height: 250pt;
     width: 250pt;
@@ -23,10 +23,15 @@ h2 a {
 
 .home-register-login-fieldset {
     position: absolute;
-    top: 50pt;
+    top: 75pt;
     left: 350pt;
     height: 250pt;
     width: 250pt;
+}
+
+.home-about-div {
+    font-size: 1.2em;
+    padding: 1em;
 }
 
 .about-wrapper {

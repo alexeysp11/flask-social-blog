@@ -20,7 +20,17 @@ def home():
         return redirect(url_for('posts.feed'))
     
     else:
-        return render_template('main/home.html')
+        img_follow = url_for('static', 
+                        filename='pictures/follow_your_interests.png')
+        img_hear = url_for('static', 
+                        filename='pictures/hear_what_people_talking_about.png')
+        img_join = url_for('static', 
+                        filename='pictures/join_the_conversation.png')
+        
+        return render_template('main/home.html', 
+                                img_follow=img_follow, 
+                                img_hear=img_hear,
+                                img_join=img_join)
 
 
 @app.route("/about")

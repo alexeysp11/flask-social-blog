@@ -7,14 +7,31 @@
 		<fieldset class="home-about-fieldset">
 			<h2>Welcome to the<br>flask-social-blog!</h2>
 			<div class="home-about-div">
-				<p>Follow your interests.</p>
-				<p>Hear what people are talking about.</p>
-				<p>Join the conversation.</p> 
+				<div class="follow-div">
+					<p>
+						<img src="{{ img_follow }}" width="25" height="25">
+						Follow your interests.
+					</p>
+				</div>
+				<div class="hear-div">
+					<p>
+						<img src="{{ img_hear }}" width="25" height="25">
+						Hear what people are talking about.
+					</p>
+				</div>
+				<div class="join-div">
+					<p>
+						<img src="{{ img_join }}" width="25" height="25">
+						Join the conversation.
+					</p> 
+				</div>
 			</div>
 		</fieldset>
 		<fieldset class="home-register-login-fieldset">
 			<h2>See what's happening in the world right now</h2>
-			<p>Join today!</p>
+			<p style="font-size: 1.2em; padding: 1em;">
+				Join today!
+			</p>
 			<div>
 				<a id="Login" href="{{ url_for('auth.login') }}">
 					<input 

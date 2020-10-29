@@ -32,7 +32,7 @@ def profile(username):
     num_posts = len(posts)
     
     image_file = url_for('static', 
-                        filename='profile_pictures/' + user.image_file)
+                        filename='pictures/' + user.image_file)
     
     return render_template('profile.html', 
                             image_file=image_file,
