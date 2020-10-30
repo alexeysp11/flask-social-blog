@@ -28,6 +28,7 @@ def save_picture(form_picture):
 @user_blueprint.route("/<username>", methods=['GET', 'POST'])
 @login_required
 def profile(username):
+    form = forms.ProfileForm()
     user = User.query.filter_by(username=username).first()
     posts = Post.query.filter_by(author=user).all()
     num_posts = len(posts)
@@ -36,6 +37,7 @@ def profile(username):
                         filename='pictures/' + user.image_file)
     
     return render_template('profile.html', 
+                            form=form,
                             image_file=image_file,
                             username=username, 
                             firstname=user.firstname, 

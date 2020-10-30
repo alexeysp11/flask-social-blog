@@ -12,4 +12,5 @@
 
 .posts-fieldset, .profile-posts-fieldset {
     width: 90%;
+    border: 2pt solid darkgrey;
 }

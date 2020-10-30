@@ -5,35 +5,35 @@
 {% block content %}
     <form method="POST">
         {{ form.hidden_tag() }}
-        <fieldset class="new-post-fieldset">
-            <h3>Update your account</h3>
+        <fieldset class="update-profile-fieldset">
+            <h2>Update your account</h2>
             <div class="firstname-div">
                 {{ form.firstname.label(class="firstname-div") }}
                 <br>
-                {{ form.firstname(class="firstname-div") }}
+                {{ form.firstname(class="update-profile-data-entry-area") }}
             </div>
             <div class="lastname-div">
                 {{ form.lastname.label(class="lastname-div") }}
                 <br>
-                {{ form.lastname(class="lastname-div") }}
+                {{ form.lastname(class="update-profile-data-entry-area") }}
             </div>
             <div class="form-group">
                 {{ form.username.label(class="form-control-label") }}
                 <br>
-                {{ form.username(class="form-control form-control=lg") }}
+                {{ form.username(class="update-profile-data-entry-area") }}
             </div>
             <div class="form-group">
                 {{ form.email.label(class="form-control-label") }}
                 <br>
-                {{ form.email(class="form-control form-control=lg") }}
+                {{ form.email(class="update-profile-data-entry-area") }}
             </div>
             <div class="form-group">
                 {{ form.about.label(class="form-control-label") }}
                 <br>
-                {{ form.about(class="form-control form-control=lg") }}
+                {{ form.about(class="update-profile-about") }}
             </div>
             <div>
-                {{ form.submit(class="btn btn-outline-info") }}
+                {{ form.submit(class="submit-btn") }}
             </div>
         </fieldset>
     </form>

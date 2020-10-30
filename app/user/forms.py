@@ -5,6 +5,10 @@ from wtforms.validators import DataRequired, Length, EqualTo
 
 # You can also install 'email_validator' for email validation support!
 
+class ProfileForm(FlaskForm): 
+    update = SubmitField('Update')
+    new = SubmitField('New Post')
+
 
 class UpdateAccountForm(FlaskForm):
     firstname = StringField('First name', 

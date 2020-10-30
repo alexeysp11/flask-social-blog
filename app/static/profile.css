@@ -1,12 +1,56 @@
+.user-info-fieldset {
+    width: 97%;
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1em;
+}
+
 .user-main-info, .user-info-btns {
     min-width: 100pt;
     max-width: 100pt;
+    border-right: 1pt solid darkgrey;
+}
+
+.user-main-info a {
+    color: black;
+}
+
+.user-main-info li {
+    margin: 2pt;
+    list-style: none;
 }
 
 .user-info {
     position: absolute;
     top: 67pt;
     left: 150pt;
-    min-width: 175pt;
-    max-width: 500pt;
+    min-width: 75%;
+    max-width: 75%;
+    text-indent: 5pt;
+}
+
+.update-profile-fieldset {
+    position: relative;
+    top: 10%;
+    left: 5%; 
+    height: auto;
+    min-width: 65%; 
+    max-width: 65%; 
+}
+
+.update-profile-fieldset div {
+    font-size: 13pt;
+    text-align: center;
+}
+
+.update-profile-data-entry-area {
+    height: 1.5em;
+    width: 75%;
+}
+
+.update-profile-about {
+    min-height: 75pt;
+    max-height: 75pt;
+    min-width: 75%;
+    max-width: 75%;
 }
