@@ -10,6 +10,10 @@
     text-align: center;
 }
 
+.forgot-password-fieldset div {
+    align-self: center;
+}
+
 .auth-data-entry-area {
     height: 1.5em;
     width: 75%;

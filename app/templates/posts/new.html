@@ -9,9 +9,14 @@
         <form method="POST">
             {{ form.hidden_tag() }}
             <fieldset class="new-post-fieldset">
-                <h3>Create a new post</h3>
+                <h2>Create a new post</h2>
                 <div class="post-author-div">
-                    <p>Author: {{ current_user.username }}</p>
+                    <p>
+                        Author: 
+                        <a href="{{ url_for('user.profile', username=current_user.username) }}">
+                            {{ current_user.username }}
+                        </a>
+                    </p>
                 </div>
                 <div class="post-name-div">
                     {{ form.title.label(class="form-control-label") }}

@@ -3,7 +3,7 @@ sys.path.append("..")
 from flask import current_app, Blueprint, render_template, url_for, request, flash, redirect
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash
-from app import forms
+from . import forms
 from flask_sqlalchemy import SQLAlchemy
 from app import db
 from app.models import User, Post
@@ -142,4 +142,4 @@ def forgot_password(page=0, username=None):
 def logout():
     logout_user()
     flash('You have been logged out.')
-    return render_template('main/home.html')
+    return redirect(url_for('home'))

@@ -1,8 +1,6 @@
-from flask import current_app, render_template, url_for, request, flash, redirect
+from flask import render_template, url_for, request, flash, redirect
 from flask_login import current_user
 from app import app
-from app import forms, db
-from app.models import User, Post
 from app.auth.views import auth_blueprint
 from app.user.views import user_blueprint
 from app.posts.views import posts_blueprint

@@ -2,7 +2,8 @@ import sys
 sys.path.append("..")
 from flask import current_app, Blueprint, render_template, url_for, request, flash, redirect, abort
 from flask_login import login_required, current_user
-from app import forms, db
+from . import forms
+from app import db
 from app.models import User, Post, Comments
 from sqlalchemy import func, update
 from sqlalchemy.orm import session, sessionmaker

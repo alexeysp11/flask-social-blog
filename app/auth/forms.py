@@ -31,28 +31,3 @@ class ForgotPasswordForm(FlaskForm):
     code = StringField('Code', validators=[DataRequired()])
     new_password = StringField('New password', validators=[DataRequired()])
     next_btn = SubmitField('Next')
-
-
-class NewPostForm(FlaskForm):
-    title = StringField('Name of Post', validators=[DataRequired()])
-    text = TextAreaField('Text', validators=[DataRequired()])
-    pusblish = SubmitField('Publish')
-
-
-class CommentsForPostForm(FlaskForm): 
-    text = TextAreaField('Comment', validators=[DataRequired()])
-    pusblish = SubmitField('Publish')
-
-
-class UpdateAccountForm(FlaskForm):
-    firstname = StringField('First name', 
-                            validators=[DataRequired(), Length(min=2, max=20)])
-    lastname = StringField('Last name', 
-                            validators=[DataRequired(), Length(min=2, max=20)])
-    username = StringField('Username',
-                           validators=[DataRequired(), Length(min=2, max=20)])
-    email = StringField('Email',
-                        validators=[DataRequired()])
-    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
-    about = TextAreaField('About me')
-    submit = SubmitField('Update')

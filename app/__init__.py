@@ -16,4 +16,4 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "auth.login"
 
-from app import views, models, forms
+from app import views, models
