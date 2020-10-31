@@ -27,9 +27,10 @@
 }
 
 .post-name {
-    height: 10pt;
-    min-width: 92%;
-    max-width: 92%;
+    height: 15pt;
+    min-width: 98%;
+    max-width: 98%;
+    font-size: 11pt;
 }
 
 .post-text-div {
@@ -41,8 +42,9 @@
 .post-text {
     min-height: 100pt;
     max-height: 100pt;
-    min-width: 92%;
-    max-width: 92%;
+    min-width: 98%;
+    max-width: 98%;
+    font-size: 11pt;
 }
 
 .post-publish-btn-div {
